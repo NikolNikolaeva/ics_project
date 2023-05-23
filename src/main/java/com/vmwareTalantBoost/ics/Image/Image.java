@@ -25,29 +25,25 @@ public class Image {
     private String service;
     private float height;
     private float width;
-    //private List<Tag> tagList;
 
     public Image() {
     }
 
-    public Image(int id, String url, Time uploadTime, String service, float height, float width, List<Tag> tagList) {
+    public Image(long id, String url, Time uploadTime, String service, float height, float width) {
         this.id = id;
         this.url = url;
         this.uploadTime = uploadTime;
         this.service = service;
         this.height = height;
         this.width = width;
-        //this.tagList = tagList;
     }
 
-    public Image(int id, String url, Time uploadTime, String service, float height, float width, List<Tag> tags, List<Tag> tagList) {
-        this.id = id;
+    public Image( String url, Time uploadTime, String service, float height, float width) {
         this.url = url;
         this.uploadTime = uploadTime;
         this.service = service;
         this.height = height;
         this.width = width;
-        //this.tagList = tagList;
     }
 
     public long getId() {
@@ -74,10 +70,6 @@ public class Image {
         return width;
     }
 
-   // public List<Tag> getTags() {
-   //     return tagList;
-   // }
-//
     public void setId(long id) {
         this.id = id;
     }
@@ -101,10 +93,6 @@ public class Image {
     public void setWidth(float width) {
         this.width = width;
     }
-
-  //  public void setTags(List<Tag> tags) {
-  //      this.tagList = tags;
-  //  }
 
     @Override
     public String toString() {
