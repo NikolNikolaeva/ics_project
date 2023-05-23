@@ -19,7 +19,7 @@ public class Tag {
             generator = "image_sequence"
     )
 
-    private int id;
+    private long id;
     private String name;
     private int confidence;
 
@@ -42,7 +42,7 @@ public class Tag {
         this.confidence = confidence;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -50,7 +50,7 @@ public class Tag {
         this.id = id;
     }
 
-    public Tag(int id, String name, int confidence) {
+    public Tag(long id, String name, int confidence) {
         this.id = id;
         this.name = name;
         this.confidence = confidence;

@@ -1,8 +1,10 @@
 package com.vmwareTalantBoost.ics.Image;
 
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.sql.Time;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -21,7 +23,7 @@ public class Image {
     )
     private long id;
     private String url;
-    private Time uploadTime;
+    private Date uploadTime;
     private String service;
     private float height;
     private float width;
@@ -38,7 +40,7 @@ public class Image {
         this.width = width;
     }
 
-    public Image( String url, Time uploadTime, String service, float height, float width) {
+    public Image( String url, Date uploadTime, String service, float height, float width) {
         this.url = url;
         this.uploadTime = uploadTime;
         this.service = service;
@@ -54,7 +56,7 @@ public class Image {
         return url;
     }
 
-    public Time getUploadTime() {
+    public Date getUploadTime() {
         return uploadTime;
     }
 
@@ -78,7 +80,7 @@ public class Image {
         this.url = url;
     }
 
-    public void setUploadTime(Time uploadTime) {
+    public void setUploadTime(Date uploadTime) {
         this.uploadTime = uploadTime;
     }
 

@@ -23,6 +23,21 @@ public class Image_tag {
     private long id_image;
     private long[] tags;
 
+
+    public Image_tag() {
+    }
+
+    public Image_tag(long idImage, long[] tags) {
+        id_image = idImage;
+        this.tags = tags;
+    }
+
+    public Image_tag(long id, long id_image, long[] tags) {
+        this.id = id;
+        this.id_image = id_image;
+        this.tags = tags;
+    }
+
     public long getId() {
         return id;
     }
@@ -56,11 +71,4 @@ public class Image_tag {
                 '}';
     }
 
-    public Image_tag() {
-    }
-
-    public Image_tag(long idImage, long[] tags) {
-        id_image = idImage;
-        this.tags = tags;
-    }
 }
