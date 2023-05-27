@@ -1,11 +1,11 @@
 package com.vmwareTalantBoost.ics.Image.Classes;
 
 import jakarta.persistence.*;
-import org.springframework.format.annotation.DateTimeFormat;
+import java.time.format.DateTimeFormatter;
 
 import java.sql.Time;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table
@@ -23,15 +23,14 @@ public class Image {
     )
     private long id;
     private String url;
+
     private Date uploadTime;
     private String service;
     private float height;
     private float width;
 
-    public Image() {
-    }
 
-    public Image(long id, String url, Time uploadTime, String service, float height, float width) {
+    public Image(long id, String url, Date uploadTime, String service, float height, float width) {
         this.id = id;
         this.url = url;
         this.uploadTime = uploadTime;
@@ -40,12 +39,16 @@ public class Image {
         this.width = width;
     }
 
-    public Image( String url, Date uploadTime, String service, float height, float width) {
+    public Image( String url, String service, float height, float width) {
         this.url = url;
-        this.uploadTime = uploadTime;
+        this.uploadTime = new Date();
         this.service = service;
         this.height = height;
         this.width = width;
+    }
+
+    public Image() {
+        uploadTime=new Date();
     }
 
     public long getId() {

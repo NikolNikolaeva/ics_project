@@ -23,7 +23,7 @@ public class Image_tag {
     private long id_image;
 
     @ElementCollection
-    private List<Long> tags =new ArrayList<Long>();
+    private List<Long> tags;
 
 
     public Image_tag() {
