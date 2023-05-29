@@ -17,16 +17,18 @@ public class ImageController {
 
      private final ImageService imageService;
      private final ImaggaService imaggaService;
+    private final TagsController tagController;
 
-     @Autowired
-    public ImageController(ImageService imageService, ImaggaService imaggaService) {
+    @Autowired
+    public ImageController(ImageService imageService, ImaggaService imaggaService, TagsController tagController) {
         this.imageService = imageService;
          this.imaggaService = imaggaService;
-     }
+        this.tagController = tagController;
+    }
 
     @GetMapping
-    public List<Tag> imageTagsListFromImagga(String image_url) {
-        return imaggaService.getTagsFromImage(image_url);
+    public List<Image> getListImages(@RequestParam(required = false) List<String> tags) {
+        return imageService.listOfImages(tags);
     }
 
     @PostMapping
@@ -46,7 +48,7 @@ public class ImageController {
          Long imageId= imageService.getImageId(image.getUrl());
 
          //from getMapping
-         List<Tag> tags=imageTagsListFromImagga(image.getUrl());
+        List<Tag> tags=tagController.imageTagsListFromImagga(image.getUrl());
 
        //if(!tags.isEmpty()) {
        //    List<Long> tagsIds=imageService.addNewTags(tags);

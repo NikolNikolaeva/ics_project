@@ -9,24 +9,17 @@ import com.vmwareTalantBoost.ics.Image.Repositories.ImageRepository;
 import com.vmwareTalantBoost.ics.Image.Repositories.TagRepository;
 
 import java.awt.image.BufferedImage;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.imageio.ImageIO;
 
@@ -89,6 +82,13 @@ public class ImageService {
         image.setUrl(imageUrl);
         imageRepository.save(image);
         return image;
+    }
+
+    public List<Image> listOfImages(List<String> tags) {
+        if (tags != null) {
+            return imageRepository.findImagesByTags(tags);
+        }
+            return imageRepository.findAllImages();
     }
 
     public Long getImageId(String url) {
@@ -156,7 +156,7 @@ public class ImageService {
 
     public List<ImageTagsObject> getAllImagesWithDetails(){
 
-        List<Image> images=imageRepository.getAllImages();
+        List<Image> images=imageRepository.findAllImages();
         List<ImageTagsObject> array=new ArrayList<ImageTagsObject>();
 
         for (int i = 0; i < images.size(); i++) {
