@@ -20,19 +20,29 @@ public class Tag {
             generator = "image_sequence"
     )
 
-    private Long id;
+    private long id;
     private String name;
     private int confidence;
 
+    @ManyToMany(mappedBy = "tags")
+    Set<Image> images;
+
     public Tag(){
     }
-    public Tag(String name,int confidence)
+
+    public Tag(String name, int confidence, Set<Image> images) {
+        this.name = name;
+        this.confidence = confidence;
+        this.images = images;
+    }
+
+    public Tag(String name, int confidence)
     {
         this.name = name;
         this.confidence = confidence;
     }
 
-    public Tag(Long id, String name, int confidence) {
+    public Tag(long id, String name, int confidence) {
         this.id = id;
         this.name = name;
         this.confidence = confidence;
@@ -40,6 +50,14 @@ public class Tag {
 
     public String getName() { return name; }
     public int getConfidence() { return confidence; }
+
+    public Set<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(Set<Image> images) {
+        this.images = images;
+    }
 
     public void setName(String name) {
         this.name = name;
@@ -49,7 +67,7 @@ public class Tag {
         this.confidence = confidence;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 

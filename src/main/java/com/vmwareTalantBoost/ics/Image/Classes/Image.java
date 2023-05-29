@@ -1,11 +1,18 @@
 package com.vmwareTalantBoost.ics.Image.Classes;
 
 import jakarta.persistence.*;
+
+import javax.imageio.ImageIO;
+import javax.print.DocFlavor;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URL;
 import java.time.format.DateTimeFormatter;
 
 import java.sql.Time;
 import java.time.format.DateTimeFormatterBuilder;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table
@@ -23,12 +30,34 @@ public class Image {
     )
     private long id;
     private String url;
-
     private Date uploadTime;
     private String service;
     private float height;
     private float width;
 
+    @ManyToMany
+    @JoinTable(
+            name = "tag_image",
+            joinColumns = @JoinColumn(name = "image_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id"))
+    Set<Tag> tags;
+
+    public Set<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(Set<Tag> tags) {
+        this.tags = tags;
+    }
+
+    public Image(String url, Date uploadTime, String service, float height, float width, Set<Tag> tags) {
+        this.url = url;
+        this.uploadTime = uploadTime;
+        this.service = service;
+        this.height = height;
+        this.width = width;
+        this.tags = tags;
+    }
 
     public Image(long id, String url, Date uploadTime, String service, float height, float width) {
         this.id = id;
@@ -45,6 +74,10 @@ public class Image {
         this.service = service;
         this.height = height;
         this.width = width;
+    }
+
+    public Image(String url) {
+        this.url = url;
     }
 
     public Image() {
@@ -96,6 +129,12 @@ public class Image {
     }
 
     public void setWidth(float width) {
+        this.width = width;
+    }
+
+    public Image(String url, float height, float width) {
+        this.url = url;
+        this.height = height;
         this.width = width;
     }
 
