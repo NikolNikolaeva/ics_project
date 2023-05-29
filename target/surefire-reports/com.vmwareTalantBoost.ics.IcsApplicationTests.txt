@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.vmwareTalantBoost.ics.IcsApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 9.537 s - in com.vmwareTalantBoost.ics.IcsApplicationTests
