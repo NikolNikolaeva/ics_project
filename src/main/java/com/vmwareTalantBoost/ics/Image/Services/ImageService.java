@@ -13,9 +13,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,9 +103,9 @@ public class ImageService {
         imageRepository.deleteById(imageId);
     }
 
-    public List<Tag> getTagList(String jsonString) {
+    public Set<Tag> getTagList(String jsonString) {
 
-        List<Tag> tags = new ArrayList<Tag>();
+        Set<Tag>  tags = new HashSet<>();
         try {
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode jsonNode = objectMapper.readTree(jsonString);
@@ -138,10 +136,10 @@ public class ImageService {
     }
 
     //json object with image url and its tags
-    public ImageTagsObject getObjectForImageDetails(Image image, List<Tag> tags) {
+    public ImageTagsObject getObjectForImageDetails(Image image,  Set<Tag>  tags) {
         ImageTagsObject imageTagsObject=new ImageTagsObject();
 
-        List<Tag> tagsArray=tags;
+        Set<Tag>  tagsArray=tags;
 
         //if image already exists
 //       if(tags==null) {

@@ -10,18 +10,16 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class ImaggaService {
 
     private ImageService imageService;
 
-    public List<Tag> getTagsFromImage(String imageURL) {
+    public  Set<Tag>  getTagsFromImage(String imageURL) {
 
-        List<Tag> tagsImage = new ArrayList<Tag>();
+        Set<Tag> tagsImage = new HashSet<>();
 
         try {
             String credentialsToEncode = "acc_f74f5358f104bd8" + ":" + "9078b5faa09f51813badb28a0666a75b";

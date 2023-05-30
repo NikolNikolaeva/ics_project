@@ -4,15 +4,16 @@ import jakarta.persistence.ElementCollection;
 import org.hibernate.tool.schema.internal.exec.ScriptTargetOutputToStdout;
 
 import java.util.List;
+import java.util.Set;
 
 public class ImageTagsObject {
 
     private Image image;
-    private List<Tag> tags;
+    private Set<Tag> tags;
 
     public ImageTagsObject(){}
 
-    public ImageTagsObject(Image image, List<Tag> tags) {
+    public ImageTagsObject(Image image,  Set<Tag>  tags) {
         this.image = image;
         this.tags = tags;
     }
@@ -25,11 +26,11 @@ public class ImageTagsObject {
         this.image = image;
     }
 
-    public void setTags(List<Tag> tags) {
+    public void setTags( Set<Tag>  tags) {
         this.tags = tags;
     }
 
-    public List<Tag> getTags() {
+    public  Set<Tag>  getTags() {
         return tags;
     }
 

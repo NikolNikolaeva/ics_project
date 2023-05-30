@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping(path = "images")
@@ -44,11 +45,12 @@ public class ImageController {
              image.setService("Imagga");
          }
 
+        Set<Tag> tags=tagController.imageTagsListFromImagga(image.getUrl());
+         image.setTags(tags);
         imageService.addNewImage(image);
          Long imageId= imageService.getImageId(image.getUrl());
 
          //from getMapping
-        List<Tag> tags=tagController.imageTagsListFromImagga(image.getUrl());
 
        //if(!tags.isEmpty()) {
        //    List<Long> tagsIds=imageService.addNewTags(tags);
