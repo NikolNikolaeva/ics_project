@@ -12,13 +12,13 @@ import java.util.Optional;
 public interface ImageRepository extends JpaRepository<Image, Long> {
 
     @Query("SELECT s FROM Image s where s.url = ?1")
-    Optional<Image> findImagesByUrl(String url);
+    Optional<Image> findImageExistByUrl(String url);
 
     @Query("SELECT s FROM Image s where s.id = ?1")
     Optional<Image> findImagesById(Long id);
 
     @Query("SELECT s.id FROM Image s where s.url = ?1")
-    Long findImageId(String url);
+    Image findImageByUrl(String url);
 
     @Query("SELECT s FROM Image s order by s.uploadTime ASC ")
     List<Image> findAllImages();

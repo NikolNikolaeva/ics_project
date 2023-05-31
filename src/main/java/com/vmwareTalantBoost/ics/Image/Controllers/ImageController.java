@@ -1,7 +1,6 @@
 package com.vmwareTalantBoost.ics.Image.Controllers;
 
 import com.vmwareTalantBoost.ics.Image.Classes.Image;
-import com.vmwareTalantBoost.ics.Image.Classes.ImageTagsObject;
 import com.vmwareTalantBoost.ics.Image.Classes.Tag;
 import com.vmwareTalantBoost.ics.Image.Services.ImageService;
 import com.vmwareTalantBoost.ics.Image.Services.ImaggaService;
@@ -33,30 +32,26 @@ public class ImageController {
     }
 
     @PostMapping
-    public ImageTagsObject registerNewImage(@RequestBody Image image){
+    public Image registerNewImage(@RequestBody String url){
 
         //if image url already exist in our database
-         if(imageService.existImage(image.getUrl()))
+         if(imageService.existImage(url))
          {
-             return imageService.getObjectForImageDetails(image,null);
+             return imageService.getImageByUrl(url);
          }
+        Image image=new Image();
 
-         if(image.getService()==null) {
-             image.setService("Imagga");
-         }
+        image.setService("Imagga");
+        image.setUrl(url);
+         List<Tag> tags;
+        tags = tagController.imageTagsListFromImagga(url);
 
-        Set<Tag> tags=tagController.imageTagsListFromImagga(image.getUrl());
-         image.setTags(tags);
-        imageService.addNewImage(image);
-         Long imageId= imageService.getImageId(image.getUrl());
+        image.setTags(tags);
+        imageService.saveTagsInDatabase(tags);
+         return imageService.addNewImage(image);
 
-         //from getMapping
+         //add tags
 
-       //if(!tags.isEmpty()) {
-       //    List<Long> tagsIds=imageService.addNewTags(tags);
-       // }
-
-        return imageService.getObjectForImageDetails(image,tags);
     }
 
     @DeleteMapping(path="{id}")
@@ -64,12 +59,4 @@ public class ImageController {
          imageService.deleteImage(imageId);
     }
 
-    public List<ImageTagsObject> getAllImages()
-    {
-        return imageService.getAllImagesWithDetails();
-    }
-
-    public JSONArray getAllImagesWithSpecificTag(){
-         return null;
-    }
 }

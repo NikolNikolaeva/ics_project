@@ -3,7 +3,6 @@ package com.vmwareTalantBoost.ics.Image.Services;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vmwareTalantBoost.ics.Image.Classes.Image;
-import com.vmwareTalantBoost.ics.Image.Classes.ImageTagsObject;
 import com.vmwareTalantBoost.ics.Image.Classes.Tag;
 import com.vmwareTalantBoost.ics.Image.Repositories.ImageRepository;
 import com.vmwareTalantBoost.ics.Image.Repositories.TagRepository;
@@ -43,7 +42,7 @@ public class ImageService {
     public boolean existImage(String url)
     {
         //check if the image already exists in our database
-        Optional<Image> imagesByUrl = imageRepository.findImagesByUrl(url);
+        Optional<Image> imagesByUrl = imageRepository.findImageExistByUrl(url);
         if (imagesByUrl.isPresent()) {
             return true;
         }
@@ -78,8 +77,19 @@ public class ImageService {
         image.setHeight(height);
         image.setWidth(width);
         image.setUrl(imageUrl);
-        imageRepository.save(image);
+        imageRepository.saveAndFlush(image);
         return image;
+    }
+
+    public void saveTagsInDatabase(List<Tag> tagsToSave)
+    {
+        for (int i = 0; i < tagsToSave.size(); i++) {
+            Optional<Tag> tagExist=tagRepository.findTagByNameAndConfidence(tagsToSave.get(i).getName(),tagsToSave.get(i).getConfidence());
+            if(!tagExist.isPresent())
+            {
+                tagRepository.save(tagsToSave.get(i));
+            }
+        }
     }
 
     public List<Image> listOfImages(List<String> tags) {
@@ -89,8 +99,8 @@ public class ImageService {
             return imageRepository.findAllImages();
     }
 
-    public Long getImageId(String url) {
-            return imageRepository.findImageId(url);
+    public Image getImageId(String url) {
+            return imageRepository.findImageByUrl(url);
     }
 
     public void deleteImage(Long imageId) {
@@ -103,9 +113,9 @@ public class ImageService {
         imageRepository.deleteById(imageId);
     }
 
-    public Set<Tag> getTagList(String jsonString) {
+    public List<Tag> getTagList(String jsonString) {
 
-        Set<Tag>  tags = new HashSet<>();
+        List<Tag>  tags = new ArrayList<Tag>();
         try {
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode jsonNode = objectMapper.readTree(jsonString);
@@ -118,8 +128,8 @@ public class ImageService {
                     Tag tagImage = new Tag();
                     String tagName = tag.get("en").asText();
                     int tagConfidence = tagNode.get("confidence").asInt();
-                    tagImage.setName(tagName);
                     if (tagConfidence > 30) {
+                        tagImage.setName(tagName);
                         tagImage.setConfidence(tagConfidence);
                         tags.add(tagImage);
                     }
@@ -135,32 +145,9 @@ public class ImageService {
         return tags;
     }
 
-    //json object with image url and its tags
-    public ImageTagsObject getObjectForImageDetails(Image image,  Set<Tag>  tags) {
-        ImageTagsObject imageTagsObject=new ImageTagsObject();
+    public List<Image> getAllImagesWithDetails(List<String> tagsList){
 
-        Set<Tag>  tagsArray=tags;
-
-        //if image already exists
-//       if(tags==null) {
-//
-//       }
-
-        imageTagsObject.setTags(tagsArray);
-        imageTagsObject.setImage(image);
-
-        return imageTagsObject;
-    }
-
-    public List<ImageTagsObject> getAllImagesWithDetails(){
-
-        List<Image> images=imageRepository.findAllImages();
-        List<ImageTagsObject> array=new ArrayList<ImageTagsObject>();
-
-        for (int i = 0; i < images.size(); i++) {
-            array.add(getObjectForImageDetails(images.get(i),null));
-        }
-        return array;
+        return imageRepository.findImagesByTags(tagsList);
     }
 
     @SneakyThrows
@@ -174,6 +161,11 @@ public class ImageService {
         //???
 
         return null;
+    }
+
+    public Image getImageByUrl(String url)
+    {
+        return imageRepository.findImageByUrl(url);
     }
 
 }

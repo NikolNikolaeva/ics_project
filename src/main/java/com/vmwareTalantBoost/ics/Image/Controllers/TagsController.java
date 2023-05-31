@@ -20,7 +20,7 @@ public class TagsController {
     }
 
     @GetMapping
-    public Set<Tag> imageTagsListFromImagga(String image_url) {
+    public List<Tag> imageTagsListFromImagga(String image_url) {
         return imaggaService.getTagsFromImage(image_url);
     }
 }

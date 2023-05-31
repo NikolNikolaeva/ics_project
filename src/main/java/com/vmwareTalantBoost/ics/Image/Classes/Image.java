@@ -12,6 +12,7 @@ import java.time.format.DateTimeFormatter;
 import java.sql.Time;
 import java.time.format.DateTimeFormatterBuilder;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -29,10 +30,16 @@ public class Image {
             generator = "image_sequence"
     )
     private long id;
+
+    @Column(name="url")
     private String url;
+    @Column(name="upload_time")
     private Date uploadTime;
+    @Column(name="service")
     private String service;
+    @Column(name="height")
     private float height;
+    @Column(name="width")
     private float width;
 
     @ManyToMany
@@ -40,17 +47,17 @@ public class Image {
             name = "tag_image",
             joinColumns = @JoinColumn(name = "image_id"),
             inverseJoinColumns = @JoinColumn(name = "tag_id"))
-    Set<Tag> tags;
+    List<Tag> tags;
 
-    public Set<Tag> getTags() {
+    public List<Tag> getTags() {
         return tags;
     }
 
-    public void setTags(Set<Tag> tags) {
+    public void setTags(List<Tag> tags) {
         this.tags = tags;
     }
 
-    public Image(String url, Date uploadTime, String service, float height, float width, Set<Tag> tags) {
+    public Image(String url, Date uploadTime, String service, float height, float width, List<Tag> tags) {
         this.url = url;
         this.uploadTime = uploadTime;
         this.service = service;

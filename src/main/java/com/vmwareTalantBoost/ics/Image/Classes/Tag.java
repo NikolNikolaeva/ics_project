@@ -19,9 +19,10 @@ public class Tag {
             strategy = GenerationType.SEQUENCE,
             generator = "image_sequence"
     )
-
     private long id;
+    @Column(name="name")
     private String name;
+    @Column(name="confidence")
     private int confidence;
 
     @ManyToMany(mappedBy = "tags")
