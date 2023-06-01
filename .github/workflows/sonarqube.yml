@@ -37,3 +37,4 @@ jobs:
           projectBaseDir: .
           token: ${{ secrets.SONAR_TOKEN }}
           extras: -Dsonar.qualitygate.wait=true
+           distribution: 'community'
