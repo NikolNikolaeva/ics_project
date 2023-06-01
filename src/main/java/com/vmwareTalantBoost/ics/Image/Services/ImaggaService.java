@@ -16,11 +16,11 @@ import java.util.*;
 @Service
 public class ImaggaService {
 
-    private ImageService imageService;
+    private TagService tagService;
     private TagRepository tagRepository;
 
-    public ImaggaService(ImageService imageService, TagRepository tagRepository) {
-        this.imageService = imageService;
+    public ImaggaService(TagService tagService, TagRepository tagRepository) {
+        this.tagService = tagService;
         this.tagRepository = tagRepository;
     }
 
@@ -52,7 +52,7 @@ public class ImaggaService {
 
             connectionInput.close();
 
-            tagsImage = imageService.getTagList(jsonResponse);
+            tagsImage = tagService.createTagListFromJSON(jsonResponse);
             return tagsImage;
 
         } catch (MalformedURLException e) {
@@ -61,9 +61,5 @@ public class ImaggaService {
             throw new RuntimeException(e);
         }
 
-    }
-
-    public List<Tag> getAllTags() {
-        return tagRepository.findAll();
     }
 }

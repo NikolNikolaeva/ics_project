@@ -22,7 +22,7 @@ public class TagsController {
 
     @GetMapping
     public List<Tag> imageTagsListFromImagga() {
-        return imaggaService.getAllTags();
+        return tagService.getAllTags();
     }
 
     @GetMapping({"str"})

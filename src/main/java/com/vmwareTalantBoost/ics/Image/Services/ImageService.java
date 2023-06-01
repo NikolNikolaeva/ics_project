@@ -16,6 +16,7 @@ import java.util.*;
 
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
 import javax.imageio.ImageIO;
@@ -113,38 +114,6 @@ public class ImageService {
         imageRepository.deleteById(imageId);
     }
 
-    public List<Tag> getTagList(String jsonString) {
-
-        List<Tag>  tags = new ArrayList<Tag>();
-        try {
-            ObjectMapper objectMapper = new ObjectMapper();
-            JsonNode jsonNode = objectMapper.readTree(jsonString);
-
-            JsonNode tagsNode = jsonNode.get("result").get("tags");
-            if (tagsNode.isArray()) {
-                for (JsonNode tagNode : tagsNode) {
-                    JsonNode tag = tagNode.get("tag");
-
-                    Tag tagImage = new Tag();
-                    String tagName = tag.get("en").asText();
-                    int tagConfidence = tagNode.get("confidence").asInt();
-                    if (tagConfidence > 30) {
-                        tagImage.setName(tagName);
-                        tagImage.setConfidence(tagConfidence);
-                        tags.add(tagImage);
-                    }
-                }
-            }
-
-            return tags;
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return tags;
-    }
-
     public List<Image> getAllImagesWithDetails(List<String> tagsList){
 
         return imageRepository.findImagesByTags(tagsList);
@@ -168,12 +137,16 @@ public class ImageService {
         return imageRepository.findImageByUrl(url);
     }
 
-    public String getImageById(Long id) {
+    public Image getImageById(Long id) {
         Optional<Image> imageExist=imageRepository.findImageExistsById(id);
         if(!imageExist.isPresent()){
-            return null;
+            try {
+                throw new ChangeSetPersister.NotFoundException();
+            } catch (ChangeSetPersister.NotFoundException e) {
+                throw new RuntimeException(e);
+            }
         }
-        return imageRepository.findImageById(id);
+            return imageRepository.findImageById(id);
     }
 }
 
