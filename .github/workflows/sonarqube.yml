@@ -30,11 +30,23 @@ jobs:
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}   # Generate a token on SonarQube, add it to the secrets of this repo with the name SONAR_TOKEN (Settings > Secrets > Actions > add new repository secret)
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}   # add the URL of your instance to the secrets of this repo with the name SONAR_HOST_URL (Settings > Secrets > Actions > add new repository secret)
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         with:
           projectBaseDir: .
           token: ${{ secrets.SONAR_TOKEN }}
-          extras: -Dsonar.qualitygate.wait=true
-           distribution: 'community'
+          extraProperties: |
+            sonar.projectKey=your_project_key
+            sonar.sources=src
+            sonar.java.binaries=target/classes
+            sonar.java.libraries=target/lib/**/*.jar
+            sonar.coverage.exclusions=**/generated/**/*, **/test/**/*
+            sonar.exclusions=**/generated/**/*, **/test/**/*
+            sonar.language=java
+            sonar.java.source=11
+            sonar.java.target=11
+            sonar.jacoco.reportPaths=target/jacoco.exec
+            sonar.junit.reportPaths=target/surefire-reports
+            sonar.scm.disabled=true
+            sonar.report.export.path=sonar-report.json
