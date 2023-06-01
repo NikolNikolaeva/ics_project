@@ -4,12 +4,11 @@ import com.vmwareTalantBoost.ics.Image.Classes.Image;
 import com.vmwareTalantBoost.ics.Image.Classes.Tag;
 import com.vmwareTalantBoost.ics.Image.Services.ImageService;
 import com.vmwareTalantBoost.ics.Image.Services.ImaggaService;
-import org.json.simple.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Set;
 
 @RestController
 @RequestMapping(path = "images")
@@ -30,6 +29,19 @@ public class ImageController {
     public List<Image> getListImages(@RequestParam(required = false) List<String> tags) {
         return imageService.listOfImages(tags);
     }
+    @GetMapping(path = "{id}")
+    public String getListImages(Long id) {
+        String image= imageService.getImageById(id);
+        if(image!=null){
+            return image;
+        }
+
+        try {
+            throw new ChangeSetPersister.NotFoundException();
+        } catch (ChangeSetPersister.NotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     @PostMapping
     public Image registerNewImage(@RequestBody String url){
@@ -39,19 +51,17 @@ public class ImageController {
          {
              return imageService.getImageByUrl(url);
          }
-        Image image=new Image();
 
+        Image image=new Image();
         image.setService("Imagga");
         image.setUrl(url);
-         List<Tag> tags;
-        tags = tagController.imageTagsListFromImagga(url);
+        List<Tag> tags;
+        tags = imaggaService.getTagsFromImage(url);
 
         image.setTags(tags);
         imageService.saveTagsInDatabase(tags);
-         return imageService.addNewImage(image);
 
-         //add tags
-
+        return imageService.addNewImage(image);
     }
 
     @DeleteMapping(path="{id}")

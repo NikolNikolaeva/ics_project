@@ -84,16 +84,16 @@ public class ImageService {
     public void saveTagsInDatabase(List<Tag> tagsToSave)
     {
         for (int i = 0; i < tagsToSave.size(); i++) {
-            Optional<Tag> tagExist=tagRepository.findTagByNameAndConfidence(tagsToSave.get(i).getName(),tagsToSave.get(i).getConfidence());
-            if(!tagExist.isPresent())
+            //Optional<Tag> tagExist=tagRepository.findTagByNameAndConfidence(tagsToSave.get(i).getName(),tagsToSave.get(i).getConfidence());
+            //if(!tagExist.isPresent())
             {
-                tagRepository.save(tagsToSave.get(i));
+                tagRepository.saveAndFlush(tagsToSave.get(i));
             }
         }
     }
 
     public List<Image> listOfImages(List<String> tags) {
-        if (tags != null) {
+        if (tags!=null) {
             return imageRepository.findImagesByTags(tags);
         }
             return imageRepository.findAllImages();
@@ -168,6 +168,13 @@ public class ImageService {
         return imageRepository.findImageByUrl(url);
     }
 
+    public String getImageById(Long id) {
+        Optional<Image> imageExist=imageRepository.findImageExistsById(id);
+        if(!imageExist.isPresent()){
+            return null;
+        }
+        return imageRepository.findImageById(id);
+    }
 }
 
 

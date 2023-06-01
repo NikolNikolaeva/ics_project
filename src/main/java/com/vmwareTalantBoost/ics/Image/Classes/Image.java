@@ -154,6 +154,7 @@ public class Image {
                 ", service='" + service + '\'' +
                 ", height=" + height +
                 ", width=" + width +
+                ", tags="+ tags +
                 '}';
     }
 }

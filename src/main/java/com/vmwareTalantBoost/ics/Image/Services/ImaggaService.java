@@ -1,6 +1,7 @@
 package com.vmwareTalantBoost.ics.Image.Services;
 
 import com.vmwareTalantBoost.ics.Image.Classes.Tag;
+import com.vmwareTalantBoost.ics.Image.Repositories.TagRepository;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
@@ -16,9 +17,11 @@ import java.util.*;
 public class ImaggaService {
 
     private ImageService imageService;
+    private TagRepository tagRepository;
 
-    public ImaggaService(ImageService imageService) {
+    public ImaggaService(ImageService imageService, TagRepository tagRepository) {
         this.imageService = imageService;
+        this.tagRepository = tagRepository;
     }
 
     public  List<Tag>  getTagsFromImage(String imageURL) {
@@ -58,5 +61,9 @@ public class ImaggaService {
             throw new RuntimeException(e);
         }
 
+    }
+
+    public List<Tag> getAllTags() {
+        return tagRepository.findAll();
     }
 }

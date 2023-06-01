@@ -1,5 +1,6 @@
 package com.vmwareTalantBoost.ics.Image.Classes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.util.*;
 
@@ -25,6 +26,7 @@ public class Tag {
     @Column(name="confidence")
     private int confidence;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "tags")
     Set<Image> images;
 
