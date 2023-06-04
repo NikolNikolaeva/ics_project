@@ -1,0 +1,4 @@
+export const environment={
+  apiImagesUrl: `http://localhost:8080/images`,
+  apiTagsUrl: `http://localhost:8080/tags`
+};

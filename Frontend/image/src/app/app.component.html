@@ -1,0 +1,73 @@
+
+<header class="header-5">
+  <div class="branding">
+    <a href="..." class="nav-link">
+      <span class="title">ImageCl</span>
+    </a>
+  </div>
+  <div class="header-nav">
+    <a href="..." class="active nav-link" aria-current="page"><span class="nav-text">Analyse</span></a>
+    <a href="..." class="nav-link"><span class="nav-text">Gallery</span></a>
+  </div>
+  <div class="header-actions">
+    <a href="..." class="nav-link nav-icon" aria-label="settings">
+      <cds-icon shape="cog"></cds-icon>
+    </a>
+  </div>
+</header>
+
+
+<form id="imageForm">
+  <clr-input-container>
+    <label>Image url</label>
+    <input id="url" clrInput placeholder="Image url" name="url"/>
+  </clr-input-container>
+
+  <button type="submit" class="btn btn-success-outline" (click)="getImageByUrl()">Load images</button>
+</form>
+
+<section id="image-analysed">
+  <aside *ngIf="imageToAnalyse" id="imageAnalyse">
+    <a href="..." class="card clickable card-img">
+      <img src="{{imageToAnalyse?.url}}" alt="image" id="image"/>
+    </a>
+  </aside>
+    <div id="tags-list">
+      <div *ngFor="let tag of tags">
+        <span class="label label-blue">{{tag.name}}</span>
+      </div>
+    </div>
+
+</section>
+
+<!--  <div *ngFor="let image of images">-->
+<!--    <div class="clr-row">-->
+<!--      <div class="clr-col-lg-6 clr-col-12">-->
+<!--        <a href="..." class="card clickable card-img">-->
+<!--          <img src="{{image?.url}}" alt="image" />-->
+<!--        </a>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<div class="alert alert-success" role="alert">
+  <div class="alert-items">
+    <div class="alert-item static">
+      <div class="alert-icon-wrapper">
+        <cds-icon class="alert-icon" shape="check-circle"></cds-icon>
+      </div>
+      <span class="alert-text">Successfully analysed</span>
+    </div>
+  </div>
+</div>
+
+  <div class="alert alert-danger" role="alert">
+    <div class="alert-items">
+      <div class="alert-item static">
+        <div class="alert-icon-wrapper">
+          <cds-icon class="alert-icon" shape="exclamation-circle"></cds-icon>
+        </div>
+        <span class="alert-text">ERROR: not an image url</span>
+      </div>
+    </div>
+  </div>
