@@ -44,8 +44,8 @@ jobs:
             sonar.coverage.exclusions=**/generated/**/*, **/test/**/*
             sonar.exclusions=**/generated/**/*, **/test/**/*
             sonar.language=java
-            sonar.java.source=11
-            sonar.java.target=11
+            sonar.java.source=17
+            sonar.java.target=17
             sonar.jacoco.reportPaths=target/jacoco.exec
             sonar.junit.reportPaths=target/surefire-reports
             sonar.scm.disabled=true
