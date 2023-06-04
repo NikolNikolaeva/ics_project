@@ -78,7 +78,7 @@ public class ImageService {
         image.setHeight(height);
         image.setWidth(width);
         image.setUrl(imageUrl);
-        imageRepository.saveAndFlush(image);
+        imageRepository.save(image);
         return image;
     }
 

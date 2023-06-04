@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping(path = "images")
 public class ImageController {
@@ -31,7 +32,7 @@ public class ImageController {
         return imageService.getImageById(id);
     }
 
-    @PostMapping
+    @PostMapping()
     public Image registerNewImage(@RequestBody String url){
 
         //if image url already exist in our database
@@ -52,7 +53,7 @@ public class ImageController {
         return imageService.addNewImage(image);
     }
 
-    @DeleteMapping(path="{id}")
+    @DeleteMapping(path="/delete/{id}")
     public void deleteImage(@PathVariable("id") Long imageId){
          imageService.deleteImage(imageId);
     }

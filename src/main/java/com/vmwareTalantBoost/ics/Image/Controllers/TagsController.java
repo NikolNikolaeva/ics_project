@@ -3,14 +3,16 @@ package com.vmwareTalantBoost.ics.Image.Controllers;
 import com.vmwareTalantBoost.ics.Image.Classes.Tag;
 import com.vmwareTalantBoost.ics.Image.Services.ImaggaService;
 import com.vmwareTalantBoost.ics.Image.Services.TagService;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
-@RequestMapping(path = "image")
+@RequestMapping(path = "tags")
 public class TagsController {
     private final ImaggaService imaggaService;
     private final TagService tagService;

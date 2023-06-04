@@ -31,7 +31,7 @@ public class Image {
     )
     private long id;
 
-    @Column(name="url")
+    @Column(name="url",columnDefinition="TEXT", length = 4096)
     private String url;
     @Column(name="upload_time")
     private Date uploadTime;
