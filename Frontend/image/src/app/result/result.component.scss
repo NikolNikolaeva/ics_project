@@ -1,0 +1,50 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#image-analysed {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2.5rem;
+  width: 100%;
+  hight:100%;
+}
+
+#tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  width: 40%;
+  padding: 2rem;
+}
+
+#tags {
+  display: flex;
+  flex-direction: column;
+}
+
+#image {
+  width: 25rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.label {
+  padding: 0.5rem;
+  font-size: medium;
+  font-weight: 800;
+  margin: 0.5rem;
+  cursor: pointer;
+}
+
+.confidence{
+  position: relative;
+visibility: hidden;
+}
+
+.label:hover+.confidence{
+visibility: visible;
+}
+

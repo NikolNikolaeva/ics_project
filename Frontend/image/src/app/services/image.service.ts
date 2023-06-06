@@ -3,7 +3,6 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Image} from "../objects/image";
 import {environment} from "../environments/environment";
-import {Tag} from "../objects/tag";
 
 @Injectable({
   providedIn: 'root'
@@ -23,11 +22,15 @@ export class ImageService {
     return this.http.get<Image[]>(`${this.apiServerUrl}?tags=${tags}`);
   }
 
+  public getImageById(id:number): Observable<Image> {
+    return this.http.get<Image>(`${this.apiServerUrl}/id?id=${id}`);
+  }
+
   public addImage(imageUrl: string): Observable<Image> {
     return this.http.post<Image>(`${this.apiServerUrl}`, imageUrl);
   }
 
-  public deleteImage(imageId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}/delete/${imageId}`);
-  }
+  // public deleteImage(imageId: number): Observable<void> {
+  //   return this.http.delete<void>(`${this.apiServerUrl}/delete/${imageId}`);
+  // }
 }

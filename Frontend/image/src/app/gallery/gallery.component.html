@@ -1,43 +1,35 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--  <meta charset="UTF-8">-->
-<!--  <title>Gallery</title>-->
-<!--</head>-->
-<!--<body>-->
-<!--<header class="header-5">-->
-<!--  <div class="branding">-->
-<!--    <a href="../../index.html" routerLink="/analyse" class="nav-link">-->
-<!--&lt;!&ndash;      <cds-icon shape="vm-bug"></cds-icon>&ndash;&gt;-->
-<!--      <span class="title">ImageCl</span>-->
-<!--    </a>-->
-<!--  </div>-->
-<!--  <div class="header-nav">-->
-<!--    <a href="app.html" routerLink="/analyse" class=" nav-link" aria-current="page"><span class="nav-text">Analyse</span></a>-->
-<!--    <a href="../../gallery.html" routerLink="/gallery" class="active nav-link"><span class="nav-text">Gallery</span></a>-->
-<!--  </div>-->
-<!--  <clr-combobox-container>-->
-<!--    <clr-combobox name="multiSelect" clrMulti="true" required>-->
-<!--      <clr-options>-->
-<!--        <clr-option *clrOptionItems="let tag of tags; field:'tag'" >-->
-<!--          {{ tag?.name}}-->
-<!--        </clr-option>-->
-<!--      </clr-options>-->
-<!--    </clr-combobox>-->
-<!--  </clr-combobox-container>-->
-<!--</header>-->
 
-<!--<section id="gallery" >-->
-<!--  <div *ngFor="let image of images">-->
+<div id="select-tags">
+  <label>Filter by tags</label>
+  <clr-combobox-container>
+  <clr-combobox [(ngModel)]="selection" name="multiSelect" clrMulti="true" required>
+    <ng-container *clrOptionSelected="let selected">
+      {{selected?.name}}
+    </ng-container>
+    <clr-options>
+      <clr-option *clrOptionItems="let tag of tags; field:'name'" [clrValue]="tag">
+         {{tag.name}}
+      </clr-option>
+    </clr-options>
+  </clr-combobox>
+  <clr-control-helper>Choose tags</clr-control-helper>
+  <clr-control-error>There was an error</clr-control-error>
+</clr-combobox-container>
+  <div id="buttons">
+    <button (click)="getImagesByTags()" class="btn btn-sm">Filter</button>
+    <button (click)="getAllImages()" class="btn btn-sm">All images</button>
+  </div>
+</div>
+
+<section id="gallery">
+  <div class="image" *ngFor="let image of images">
 <!--    <div class="clr-row">-->
 <!--      <div class="clr-col-lg-6 clr-col-12">-->
-<!--        <a href="..." class="card clickable card-img">-->
-<!--          <img src="{{image?.url}}" alt="image" />-->
-<!--        </a>-->
+        <a class="card clickable card-img">
+          <img (click)="navigateToResultView(image.id)" src="{{image?.url}}" alt="image" />
+        </a>
 <!--      </div>-->
 <!--    </div>-->
-<!--  </div>-->
-<!--</section>-->
+  </div>
+</section>
 
-<!--</body>-->
-<!--</html>-->

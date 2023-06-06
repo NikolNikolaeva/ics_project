@@ -5,15 +5,45 @@
 }
 
 #gallery {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  width: 100%;
 }
 
+.image{
+  margin: 0.5rem;
+}
 
 .header-5 clr-combobox-container {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+#select-tags{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: end;
+  padding: 1rem;
+  width: 100%;
+}
+
+#buttons{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0.3rem;
+}
+#buttons > button{
+  margin: 0.1rem;
+}
+
+clr-combobox-container{
+  margin-left: 1rem;
+}
+
+.clr-row{
+  display: flex;
+  box-sizing: border-box;
 }

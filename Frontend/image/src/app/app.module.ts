@@ -9,10 +9,15 @@ import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import {GalleryComponent} from "./gallery/gallery.component";
 import {RouterModule} from "@angular/router";
+import {ResultComponent} from "./result/result.component";
+import {AnalyseComponent} from "./analyse/analyse.component";
 
 @NgModule({
   declarations: [
-    AppComponent,GalleryComponent
+    AppComponent,
+    GalleryComponent,
+    ResultComponent,
+    AnalyseComponent
   ],
   imports: [
     BrowserModule,
@@ -20,11 +25,10 @@ import {RouterModule} from "@angular/router";
     BrowserAnimationsModule,
     ClarityModule,
     HttpClientModule,
-    FormsModule,
-
-  ],
+    FormsModule
+],
   providers: [],
-  bootstrap: [AppComponent,GalleryComponent],
+  bootstrap: [ AppComponent ],
 
 })
 export class AppModule { }
