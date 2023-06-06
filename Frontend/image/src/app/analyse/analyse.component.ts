@@ -34,14 +34,16 @@ export class AnalyseComponent implements OnInit {
         successEl.classList.add('active');
         const dangerEl = document.querySelectorAll<HTMLElement>('.alert-danger')[0];
         dangerEl.classList.remove('active');
+        // @ts-ignore
+        inputEl.value='';
       },
       (error: HttpErrorResponse) => {
         const successEl = document.querySelectorAll<HTMLElement>('.alert-success')[0];
         successEl.classList.remove('active');
         const dangerEl = document.querySelectorAll<HTMLElement>('.alert-danger')[0];
         dangerEl.classList.add('active');
+        // @ts-ignore
+        inputEl.value='';
       });
   }
-
-
 }
