@@ -43,6 +43,7 @@ export class GalleryComponent implements OnInit {
     }
     this.getTags();
     this.tagsNames=this.tagsNames.sort();
+
   }
 
   navigateToResultView(id: number) {
@@ -61,9 +62,6 @@ export class GalleryComponent implements OnInit {
     this.tagService.getTags().subscribe(
       (tags) => {
         this.tags = tags;
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
       }
     );
   }
