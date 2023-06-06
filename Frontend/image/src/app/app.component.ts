@@ -5,7 +5,7 @@ import {HttpErrorResponse} from "@angular/common/http";
 import {Tag} from "./objects/tag";
 import {Router} from "@angular/router";
 import '@cds/core/icon/register.js';
-import { ClarityIcons, userIcon } from '@cds/core/icon';
+import {ClarityIcons, userIcon} from '@cds/core/icon';
 
 @Component({
   selector: 'app-root',
@@ -21,23 +21,37 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.chechPageActivity();
   }
-  changeActiveAnalyse(){
-    const analyseBtn=document.querySelectorAll<HTMLElement>('#analyse')[0];
-    const galleryBtn=document.querySelectorAll<HTMLElement>('#gallery')[0];
-    if(!analyseBtn.classList.contains('active'))
- {
+
+  chechPageActivity() {
+
+    const analyseBtn = document.querySelectorAll<HTMLElement>('#analyse')[0];
+    const galleryBtn = document.querySelectorAll<HTMLElement>('#gallery')[0];
+
+    if (document.URL.includes("images")) {
+      analyseBtn.classList.remove('active');
+      galleryBtn.classList.add('active');
+    } else {
+      analyseBtn.classList.add('active');
+      galleryBtn.classList.remove('active');
+    }
+  }
+
+  changeActiveAnalyse() {
+    const analyseBtn = document.querySelectorAll<HTMLElement>('#analyse')[0];
+    const galleryBtn = document.querySelectorAll<HTMLElement>('#gallery')[0];
+    if (!analyseBtn.classList.contains('active')) {
       analyseBtn.classList.add('active');
       galleryBtn.classList.remove('active');
     }
 
   }
 
-  changeActiveGallery(){
-    const analyseBtn=document.querySelectorAll<HTMLElement>('#analyse')[0];
-    const galleryBtn=document.querySelectorAll<HTMLElement>('#gallery')[0];
-    if(!galleryBtn.classList.contains('active'))
-   {
+  changeActiveGallery() {
+    const analyseBtn = document.querySelectorAll<HTMLElement>('#analyse')[0];
+    const galleryBtn = document.querySelectorAll<HTMLElement>('#gallery')[0];
+    if (!galleryBtn.classList.contains('active')) {
       analyseBtn.classList.remove('active');
       galleryBtn.classList.add('active');
     }
