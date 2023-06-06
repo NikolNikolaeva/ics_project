@@ -6,12 +6,15 @@
 
 #gallery {
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: auto auto auto auto;
   width: 100%;
+  justify-content: center;
+  align-items: center;
 }
 
 .image{
   margin: 0.5rem;
+  width: 17rem;
 }
 
 .header-5 clr-combobox-container {
@@ -22,11 +25,14 @@
 
 #select-tags{
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: end;
   padding: 1rem;
   width: 100%;
+}
+
+#select-tags>label{
+  padding-bottom: 0.6rem;
 }
 
 #buttons{
@@ -34,13 +40,15 @@
   justify-content: space-around;
   align-items: center;
   margin: 0.3rem;
+  padding-bottom: 0.3rem;
 }
 #buttons > button{
   margin: 0.1rem;
 }
 
 clr-combobox-container{
-  margin-left: 1rem;
+  margin-left: 0.5rem;
+  width: 17rem;
 }
 
 .clr-row{

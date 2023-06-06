@@ -16,13 +16,14 @@ export class GalleryComponent implements OnInit {
   //title = 'ics';
   tags: Tag[] = [];
   images: Image[] = [];
-  imagesAll:Image[]=[];
+  imagesAll: Image[] = [];
   @Input('ngModel')
   selection: any[] = [];
   tagsNames: string[] = [];
+  tagParam: string[] = [];
 
   constructor(private tagService: TagService,
-              private imageService: ImageService, private router: Router,private route: ActivatedRoute) {
+              private imageService: ImageService, private router: Router, private route: ActivatedRoute) {
   }
 
   getSelectedTags(): string[] {
@@ -30,18 +31,30 @@ export class GalleryComponent implements OnInit {
   }
 
   ngOnInit() {
-    let tag = this.route.snapshot.params['name'];
-    let tags=new Array();
-    tags.push(tag);
-    this.getImagesByTags();
-    this.getAllImages();
+
+    let tag = this.route.snapshot.params['tag'];
+    if(tag!=null) {
+      this.tagParam.push(tag);
+      this.getImagesByTags();
+    }
+    else {
+      this.getAllImages();
+      this.imagesAll = this.images;
+    }
     this.getTags();
-    this.tagsNames.sort();
-    this.imagesAll=this.images;
+    this.tagsNames=this.tagsNames.sort();
   }
 
   navigateToResultView(id: number) {
     this.router.navigateByUrl(`/result/${id}`);
+  }
+
+  private getImages(){
+    this.imageService.getImagesByTag(this.tagsNames).subscribe(
+      (imagesByTags) => {
+        this.images = imagesByTags;
+      }
+    );
   }
 
   getTags() {
@@ -56,30 +69,29 @@ export class GalleryComponent implements OnInit {
   }
 
   getAllImages() {
-    if(this.imagesAll.length==0) {
+    if (this.imagesAll.length == 0) {
       this.imageService.getImages().subscribe(
         (images) => {
           this.images = images;
         }
       );
-    }
-    else{
-      this.images=this.imagesAll;
+    } else {
+      this.images = this.imagesAll;
     }
   }
-
   getImagesByTags() {
-    let container = document.querySelectorAll<HTMLElement>('ng-container')[0];
-    this.tagsNames = this.getSelectedTags();
-    if (this.tagsNames.length != 0) {
-      this.imageService.getImagesByTag(this.tagsNames.sort()).subscribe(
-        (imagesByTags) => {
-          this.images = imagesByTags;
-        }
-      )
-    }
-    else{
-      this.getAllImages();
+    if (this.tagParam.length == 0) {
+      let container = document.querySelectorAll<HTMLElement>('ng-container')[0];
+      this.tagsNames = this.getSelectedTags();
+      if (this.tagsNames.length != 0) {
+        this.getImages();
+      } else {
+        this.getAllImages();
+      }
+    } else {
+      this.tagsNames = this.tagParam;
+      console.log(this.tagParam)
+      this.getImages();
     }
   }
 

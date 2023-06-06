@@ -31,8 +31,6 @@ export class ResultComponent implements OnInit {
     this.imageService.getImageById(id).subscribe(
       (image) => {
         this.imageToAnalyse = image;
-        console.log(this.imageToAnalyse);
-
       });
   }
 }

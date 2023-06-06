@@ -1,4 +1,4 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -8,16 +8,29 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 2.5rem;
+  margin: 2rem;
   width: 100%;
-  hight:100%;
+  height: 30rem;
 }
 
 #tags-list {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   width: 40%;
-  padding: 2rem;
+}
+
+#tags-list > div {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 1rem;
+}
+
+#tags-list > span {
+  color: #00567A;
+  font-family: inherit;
+  font-weight: 500;
+  padding-left: 2rem;
 }
 
 #tags {
@@ -26,7 +39,7 @@
 }
 
 #image {
-  width: 25rem;
+  height: 20rem;
   align-items: center;
   justify-content: center;
 }
@@ -39,12 +52,12 @@
   cursor: pointer;
 }
 
-.confidence{
+.confidence {
   position: relative;
-visibility: hidden;
+  visibility: hidden;
 }
 
-.label:hover+.confidence{
-visibility: visible;
+.label:hover + .confidence {
+  visibility: visible;
 }
 

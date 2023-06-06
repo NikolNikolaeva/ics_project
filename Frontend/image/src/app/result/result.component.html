@@ -1,15 +1,18 @@
 
 <section id="image-analysed">
   <aside id="imageAnalyse">
-    <a href="..." class="card clickable card-img">
-      <img src="{{imageToAnalyse?.url}}" alt="image" id="image"/>
+    <a  class="card clickable card-img">
+      <img src="{{imageToAnalyse.url}}" alt="image" id="image"/>
     </a>
-  </aside>
+    </aside>
   <div id="tags-list">
+    <div>
     <div *ngFor="let tag of imageToAnalyse?.tags">
       <span (click)="navigateToResultView(tag.name)" class="label label-blue">{{tag.name}}</span>
       <span class="confidence">{{tag.confidence}}%</span>
     </div>
+    </div>
+    <span>Uploaded time: {{imageToAnalyse?.uploadTime}}</span><br>
   </div>
 
 </section>

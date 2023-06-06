@@ -7,10 +7,10 @@ import {AnalyseComponent} from "./analyse/analyse.component";
 
 const routes: Routes = [
   {path: '', component: AnalyseComponent},
-  {path: 'images', component: GalleryComponent},
   {path: 'result/:id', component: ResultComponent},
-  {path: '**', component: AnalyseComponent},
+  {path: 'images', component: GalleryComponent},
   {path: 'images/:tag', component: GalleryComponent},
+  {path: '**', component: AnalyseComponent},
 ];
 
 @NgModule({
