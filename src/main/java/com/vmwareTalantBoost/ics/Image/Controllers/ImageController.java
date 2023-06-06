@@ -7,6 +7,7 @@ import com.vmwareTalantBoost.ics.Image.Services.ImaggaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin
@@ -27,12 +28,12 @@ public class ImageController {
     public List<Image> getListImages(@RequestParam(required = false) List<String> tags) {
         return imageService.listOfImages(tags);
     }
-    @GetMapping(path = "{id}")
-    public Image getListImagesById(@RequestParam Long id) {
+    @GetMapping(path = "/id")
+    public Image getImageById(@RequestParam long id) {
         return imageService.getImageById(id);
     }
 
-    @PostMapping()
+    @PostMapping
     public Image registerNewImage(@RequestBody String url){
 
         //if image url already exist in our database
@@ -44,7 +45,7 @@ public class ImageController {
         Image image=new Image();
         image.setService("Imagga");
         image.setUrl(url);
-        List<Tag> tags;
+        List<Tag> tags=new ArrayList<Tag>();
         tags = imaggaService.getTagsFromImage(url);
 
         image.setTags(tags);

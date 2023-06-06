@@ -3,10 +3,7 @@ package com.vmwareTalantBoost.ics.Image.Controllers;
 import com.vmwareTalantBoost.ics.Image.Classes.Tag;
 import com.vmwareTalantBoost.ics.Image.Services.ImaggaService;
 import com.vmwareTalantBoost.ics.Image.Services.TagService;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,7 +25,7 @@ public class TagsController {
     }
 
     @GetMapping({"str"})
-    public List<Tag> getTagsWithString(String str) {
+    public List<Tag> getTagsWithString(@RequestParam String str) {
         return tagService.getTagsWithStr(str);
     }
 }

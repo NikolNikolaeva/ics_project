@@ -26,16 +26,15 @@ public class ImaggaService {
 
     public  List<Tag>  getTagsFromImage(String imageURL) {
 
-        List<Tag> tagsImage;
 
         try {
+            List<Tag> tagsImage;
             String credentialsToEncode = "acc_f74f5358f104bd8" + ":" + "9078b5faa09f51813badb28a0666a75b";
             String basicAuth = Base64.getEncoder().encodeToString(credentialsToEncode.getBytes(StandardCharsets.UTF_8));
 
             String endpoint_url = "https://api.imagga.com/v2/tags";
-            String image_url = "https://imagga.com/static/images/tagging/wind-farm-538576_640.jpg";
 
-            String url = endpoint_url + "?image_url=" + image_url;
+            String url = endpoint_url + "?image_url=" + imageURL;
             URL urlObject = new URL(url);
             HttpURLConnection connection = (HttpURLConnection) urlObject.openConnection();
 
