@@ -34,7 +34,7 @@
 .alert {
   display: none;
   padding: 0.5rem;
-  margin: 3rem;
+  margin: 2.5rem;
 }
 
 .active {
@@ -47,3 +47,7 @@
   cursor:pointer;
 }
 
+alert-danger{
+  display: flex;
+  justify-content: space-between;
+}

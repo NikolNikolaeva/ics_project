@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpErrorResponse} from "@angular/common/http";
 import {Router} from "@angular/router";
-import {Tag} from "../objects/tag";
+import {ClrLoadingState} from '@clr/angular';
 import {ImageService} from "../services/image.service";
+import {delay} from "rxjs";
 
 @Component({
   selector: 'app-analyse',
@@ -12,6 +13,7 @@ import {ImageService} from "../services/image.service";
 export class AnalyseComponent implements OnInit {
   // @ts-ignore
   imageToAnalyse: Image;
+  submitBtnState: ClrLoadingState = ClrLoadingState.DEFAULT;
 
   constructor(private imageService: ImageService, private router: Router) {
   }
@@ -19,7 +21,13 @@ export class AnalyseComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  navigateToResultView(id:number) {
+  async submitDemo() {
+    this.submitBtnState = ClrLoadingState.LOADING;
+    setTimeout(() => this.submitBtnState = ClrLoadingState.DEFAULT, 1000);
+
+  }
+
+  navigateToResultView(id: number) {
     this.router.navigateByUrl(`/result/${id}`);
   }
 
@@ -27,6 +35,8 @@ export class AnalyseComponent implements OnInit {
     let inputEl = document.querySelectorAll<HTMLElement>('#url')[0];
     // @ts-ignore
     let url = inputEl.value;
+    if (url != '')
+      this.submitDemo();
     this.imageService.addImage(url).subscribe(
       (image) => {
         this.imageToAnalyse = image;
@@ -35,7 +45,7 @@ export class AnalyseComponent implements OnInit {
         const dangerEl = document.querySelectorAll<HTMLElement>('.alert-danger')[0];
         dangerEl.classList.remove('active');
         // @ts-ignore
-        inputEl.value='';
+        inputEl.value = '';
       },
       (error: HttpErrorResponse) => {
         const successEl = document.querySelectorAll<HTMLElement>('.alert-success')[0];
@@ -43,7 +53,17 @@ export class AnalyseComponent implements OnInit {
         const dangerEl = document.querySelectorAll<HTMLElement>('.alert-danger')[0];
         dangerEl.classList.add('active');
         // @ts-ignore
-        inputEl.value='';
+        inputEl.value = '';
       });
   }
+
+  close() {
+    const successEl = document.querySelectorAll<HTMLElement>('.alert-success')[0];
+    if (successEl.classList.contains('active'))
+      successEl.classList.remove('active');
+    const dangerEl = document.querySelectorAll<HTMLElement>('.alert-danger')[0];
+    if (dangerEl.classList.contains('active'))
+      dangerEl.classList.remove('active');
+  }
+
 }

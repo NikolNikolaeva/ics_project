@@ -7,6 +7,7 @@
         <cds-icon class="alert-icon" shape="exclamation-circle"></cds-icon>
       </div>
       <span class="alert-text">ERROR: not an image url</span>
+      <cds-icon (click)="close()" shape="times"></cds-icon>
     </div>
   </div>
 </div>
@@ -18,6 +19,7 @@
       </div>
       <span class="alert-text">Successfully analysed</span>
       <a id="viewImage" (click)="navigateToResultView(imageToAnalyse.id)">View analysed image</a>
+      <cds-icon (click)="close()" shape="times"></cds-icon>
     </div>
   </div>
 </div>
@@ -30,5 +32,5 @@
     <input id="url" clrInput placeholder="Image url" name="url"/>
   </clr-input-container>
 
-  <button type="submit" class="btn btn-success-outline" (click)="getImageByUrl()">Analyse image</button>
+  <button [clrLoading]="submitBtnState" type="submit" class="btn btn-success-outline" (click)="getImageByUrl()">Analyse image</button>
 </form>

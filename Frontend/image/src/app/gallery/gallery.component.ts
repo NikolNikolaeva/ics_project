@@ -42,7 +42,7 @@ export class GalleryComponent implements OnInit {
       this.imagesAll = this.images;
     }
     this.getTags();
-    this.tagsNames=this.tagsNames.sort();
+    this.tagsNames.sort();
 
   }
 
@@ -61,7 +61,7 @@ export class GalleryComponent implements OnInit {
   getTags() {
     this.tagService.getTags().subscribe(
       (tags) => {
-        this.tags = tags;
+        this.tags = tags.sort();
       }
     );
   }
@@ -78,18 +78,20 @@ export class GalleryComponent implements OnInit {
     }
   }
   getImagesByTags() {
+    let container = document.querySelectorAll<HTMLElement>('ng-container')[0];
+    this.tagsNames = this.getSelectedTags();
     if (this.tagParam.length == 0) {
-      let container = document.querySelectorAll<HTMLElement>('ng-container')[0];
-      this.tagsNames = this.getSelectedTags();
+
       if (this.tagsNames.length != 0) {
         this.getImages();
       } else {
-        this.getAllImages();
+        //this.getAllImages();
       }
-    } else {
+    } else{
       this.tagsNames = this.tagParam;
-      console.log(this.tagParam)
       this.getImages();
+      this.tagParam.pop();
+      console.log(this.tagParam)
     }
   }
 
