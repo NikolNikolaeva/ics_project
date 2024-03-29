@@ -1,0 +1,5 @@
+com\vmwareTalantBoost\ics\Image\Classes\UserRegistrationDto.class
+com\vmwareTalantBoost\ics\Image\Services\UserService.class
+com\vmwareTalantBoost\ics\Image\Classes\User.class
+com\vmwareTalantBoost\ics\Image\Controllers\UserController.class
+com\vmwareTalantBoost\ics\Image\Repositories\UserRepository.class

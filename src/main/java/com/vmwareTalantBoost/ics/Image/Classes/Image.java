@@ -1,5 +1,6 @@
 package com.vmwareTalantBoost.ics.Image.Classes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import javax.imageio.ImageIO;
@@ -48,6 +49,9 @@ public class Image {
             joinColumns = @JoinColumn(name = "image_id"),
             inverseJoinColumns = @JoinColumn(name = "tag_id"))
     List<Tag> tags;
+
+    @ManyToMany(mappedBy = "images")
+    Set<User> users;
 
     public List<Tag> getTags() {
         return tags;

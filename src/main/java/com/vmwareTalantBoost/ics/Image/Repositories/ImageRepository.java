@@ -28,4 +28,9 @@ public interface ImageRepository extends JpaRepository<Image, Long> {
 
     @Query("SELECT s FROM Image s where s.id = ?1")
     Optional<Image> findImageExistsById(Long id);
+
+    @Query("SELECT s FROM Image s JOIN s.users m WHERE m.username IN :username")
+    List<Image> findImagesByUsername(String username);
+
+
 }

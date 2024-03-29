@@ -11,13 +11,18 @@ import {GalleryComponent} from "./gallery/gallery.component";
 import {RouterModule} from "@angular/router";
 import {ResultComponent} from "./result/result.component";
 import {AnalyseComponent} from "./analyse/analyse.component";
+import { LoginComponent } from './login/login.component';
+import { RegistrationComponent } from './registration/registration.component';
 
+// @ts-ignore
 @NgModule({
   declarations: [
     AppComponent,
     GalleryComponent,
     ResultComponent,
-    AnalyseComponent
+    AnalyseComponent,
+    LoginComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +31,7 @@ import {AnalyseComponent} from "./analyse/analyse.component";
     ClarityModule,
     HttpClientModule,
     FormsModule
-],
+  ],
   providers: [],
   bootstrap: [ AppComponent ],
 
