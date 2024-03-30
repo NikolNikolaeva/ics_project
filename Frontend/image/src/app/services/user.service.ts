@@ -26,9 +26,9 @@ export class UserService {
     return this.http.get<User>(`${this.apiServerUrl}/username/${username}`);
   }
 
-  public addUser(user: CreateUser): Observable<CreateUser> {
+  public addUser(user: User): Observable<User> {
     // @ts-ignore
-    return this.http.post<CreateUser>(`${this.apiServerUrl}`,CreateUser);
+    return this.http.post<User>(`${this.apiServerUrl}`,user);
   }
 
   public getUserExistByUsername(username:string): Observable<User> {

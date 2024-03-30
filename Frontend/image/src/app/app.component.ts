@@ -21,19 +21,11 @@ export class AppComponent implements OnInit {
   constructor(private imageService: ImageService, private router: Router, public authService: AuthService) {
   }
 
-
   ngOnInit(): void {
-    this.chechPageActivity();
-
-    const header = document.querySelectorAll<HTMLElement>('#header-nav')[0];
-    if (this.authService.isLoggedIn()) {
-      header.innerHTML=` <a routerLink="/analyse" id="analyse" class="nav-link" (click)="changeActiveAnalyse()"><span class="nav-text">Analyse</span></a>
-    <a routerLink="/images" id="gallery" class="nav-link" (click)="changeActiveGallery()"><span class="nav-text">Gallery</span></a>
-`;
-    }
+    this.checkPageActivity();
   }
 
-  chechPageActivity() {
+  checkPageActivity() {
 
     const analyseBtn = document.querySelectorAll<HTMLElement>('#analyse')[0];
     const galleryBtn = document.querySelectorAll<HTMLElement>('#gallery')[0];
@@ -42,14 +34,6 @@ export class AppComponent implements OnInit {
       analyseBtn.classList.remove('active');
       galleryBtn.classList.add('active');
     } else if(document.URL.includes("analyse")){
-      analyseBtn.classList.add('active');
-      galleryBtn.classList.remove('active');
-    }
-
-    if (document.URL.includes("register")) {
-      analyseBtn.classList.remove('active');
-      galleryBtn.classList.add('active');
-    } else {
       analyseBtn.classList.add('active');
       galleryBtn.classList.remove('active');
     }

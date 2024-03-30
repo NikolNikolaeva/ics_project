@@ -15,7 +15,7 @@ import config from "../config/index";
 export class RegistrationComponent {
 
   // @ts-ignore
-  user:CreateUser;
+  user:User;
   submitBtnState: ClrLoadingState = ClrLoadingState.DEFAULT;
 
   constructor(private userService: UserService, private router: Router,private authService: AuthService) {
@@ -26,31 +26,49 @@ export class RegistrationComponent {
 
   }
   onSubmit() {
+    // @ts-ignore
+    const username = document.getElementById<HTMLInputElement>("username");
+    // @ts-ignore
+    const email = document.getElementById<HTMLInputElement>("email");
+    // @ts-ignore
+    const password = document.getElementById<HTMLInputElement>("password");
+    const informDiv = document.getElementById("inform");
 
-    let username=document.querySelector<HTMLElement>("#username");
-    let email=document.querySelector<HTMLElement>("#email");
-    let password=document.querySelector<HTMLElement>("#password");
-    let informDiv=document.getElementById("inform");
+    if (!username || !email || !password || !informDiv) {
+      console.error('One of the form elements is missing.');
+      return; // Early exit if any form element is missing
+    }
 
     this.submitDemo();
-
-      // @ts-ignore
-      this.userService.getUserByUsername(username.value).subscribe({
-        next: (user: User) => {
-          // Assuming the 'user' object has a 'password' property to compare with
-          // @ts-ignore
-          if(user!=null){
-            // @ts-ignore
-            informDiv.innerHTML=`<p>User already exists</p>`;
-          } else {
-            // Perform login and navigate
-            this.router.navigateByUrl(`/`)
-              .then(r => {
-                // @ts-ignore
-                this.authService.register(username.value,email.value,password.value)
-              })
-          }
+    // @ts-ignore
+    this.userService.getUserByUsername(username.value).subscribe({
+      next: (user: User) => {
+        if(user!=null) {
+          informDiv.innerHTML = `<p>User already exists</p>`;
         }
-      })
+        else{
+          const newUser:User = {
+            // @ts-ignore
+            username: username.value,
+            // @ts-ignore
+            email: email.value,
+            // @ts-ignore
+            password: password.value
+          };
+          this.userService.addUser(newUser).subscribe({
+            next: (response) => {
+              this.router.navigateByUrl(`/`);
+            },
+            error: (error) => {
+              informDiv.innerHTML = `<p>Registration failed</p>`;
+            }
+          });
+        }
+      },
+      error: (err) => {
+          informDiv.innerHTML = `<p>Error checking user existence</p>`;
+      }
+    });
   }
+
 }

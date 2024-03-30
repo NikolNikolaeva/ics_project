@@ -37,6 +37,7 @@ export class AnalyseComponent implements OnInit {
     let url = inputEl.value;
     if (url != '')
       this.submitDemo();
+
     this.imageService.addImage(url).subscribe(
       (image) => {
         this.imageToAnalyse = image;

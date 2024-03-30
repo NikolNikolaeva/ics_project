@@ -47,7 +47,7 @@ export class GalleryComponent implements OnInit {
   }
 
   navigateToResultView(id: number) {
-    this.router.navigateByUrl(`/result/${id}`);
+    return this.router.navigateByUrl(`/result/${id}`);
   }
 
   private getImages(){
@@ -76,6 +76,7 @@ export class GalleryComponent implements OnInit {
     } else {
       this.images = this.imagesAll;
     }
+
   }
   getImagesByTags() {
     let container = document.querySelectorAll<HTMLElement>('ng-container')[0];

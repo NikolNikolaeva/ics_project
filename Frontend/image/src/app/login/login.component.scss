@@ -11,7 +11,7 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     display: flex;
-
+  flex-direction: column;
   }
 
   h2{
@@ -19,7 +19,6 @@
     width: 50%;
     text-align: center;
     padding: 5px;
-
   }
 
   input[type="text"],
@@ -52,5 +51,14 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    margin:0 4rem auto;
+    text-align: center;
   }
+
+#inform{
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+  color: red;
+}
+
