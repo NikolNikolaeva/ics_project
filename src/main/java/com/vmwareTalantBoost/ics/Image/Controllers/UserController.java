@@ -1,7 +1,6 @@
 package com.vmwareTalantBoost.ics.Image.Controllers;
 
 import com.vmwareTalantBoost.ics.Image.Classes.User;
-import com.vmwareTalantBoost.ics.Image.Classes.UserRegistrationDto;
 import com.vmwareTalantBoost.ics.Image.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -36,12 +35,11 @@ public class UserController {
     }
 
     @PostMapping
-    public User registerNewUser(@RequestBody UserRegistrationDto registrationDto) {
-       if(userService.existUser(registrationDto.getUsername(), registrationDto.getEmail())) {
-            return userService.getUserByUsername(registrationDto.getUsername());
+    public User registerNewUser(@RequestBody User user) {
+       if(userService.existUser(user.getUsername(), user.getEmail())) {
+            return userService.getUserByUsername(user.getUsername());
         }
 
-        User user = new User(registrationDto.getUsername(), registrationDto.getEmail(), registrationDto.getPassword());
         return userService.addNewUser(user);
     }
 
