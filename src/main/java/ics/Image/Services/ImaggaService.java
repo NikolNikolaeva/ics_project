@@ -1,0 +1,64 @@
+package ics.Image.Services;
+
+import ics.Image.Classes.Tag;
+import ics.Image.Repositories.TagRepository;
+import org.springframework.stereotype.Service;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.util.*;
+
+@Service
+public class ImaggaService {
+
+    private TagService tagService;
+    private TagRepository tagRepository;
+
+    public ImaggaService(TagService tagService, TagRepository tagRepository) {
+        this.tagService = tagService;
+        this.tagRepository = tagRepository;
+    }
+
+    public  List<Tag>  getTagsFromImage(String imageURL) {
+
+
+        try {
+            List<Tag> tagsImage;
+            String credentialsToEncode = "acc_f74f5358f104bd8" + ":" + "9078b5faa09f51813badb28a0666a75b";
+            String basicAuth = Base64.getEncoder().encodeToString(credentialsToEncode.getBytes(StandardCharsets.UTF_8));
+
+            String endpoint_url = "https://api.imagga.com/v2/tags";
+
+            String url = endpoint_url + "?image_url=" + imageURL;
+            URL urlObject = new URL(url);
+            HttpURLConnection connection = (HttpURLConnection) urlObject.openConnection();
+
+            connection.setRequestProperty("Authorization", "Basic " + basicAuth);
+
+            int responseCode = connection.getResponseCode();
+
+            System.out.println("\nSending 'GET' request to URL : " + url);
+            System.out.println("Response Code : " + responseCode);
+
+            BufferedReader connectionInput = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+
+            String jsonResponse = connectionInput.readLine();
+
+            connectionInput.close();
+
+            tagsImage = tagService.createTagListFromJSON(jsonResponse);
+            return tagsImage;
+
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+}

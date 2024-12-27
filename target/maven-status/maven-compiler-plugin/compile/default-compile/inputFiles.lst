@@ -1,17 +1,16 @@
-C:\Users\User\OneDrive\Работен плот\tempProj\ics_project\src\main\java\com\vmwareTalantBoost\ics\Image\Services\ImageService.java
-C:\Users\User\OneDrive\Работен плот\tempProj\ics_project\src\main\java\com\vmwareTalantBoost\ics\Greeting.java
-C:\Users\User\OneDrive\Работен плот\tempProj\ics_project\src\main\java\com\vmwareTalantBoost\ics\Image\Services\TagService.java
-C:\Users\User\OneDrive\Работен плот\tempProj\ics_project\src\main\java\com\vmwareTalantBoost\ics\Image\Controllers\ImageController.java
-C:\Users\User\OneDrive\Работен плот\tempProj\ics_project\src\main\java\com\vmwareTalantBoost\ics\Image\Classes\UserRegistrationDto.java
-C:\Users\User\OneDrive\Работен плот\tempProj\ics_project\src\main\java\com\vmwareTalantBoost\ics\Image\Repositories\UserRepository.java
-C:\Users\User\OneDrive\Работен плот\tempProj\ics_project\src\main\java\com\vmwareTalantBoost\ics\Image\Controllers\UserController.java
-C:\Users\User\OneDrive\Работен плот\tempProj\ics_project\src\main\java\com\vmwareTalantBoost\ics\Image\Repositories\TagRepository.java
-C:\Users\User\OneDrive\Работен плот\tempProj\ics_project\src\main\java\com\vmwareTalantBoost\ics\GreetingController.java
-C:\Users\User\OneDrive\Работен плот\tempProj\ics_project\src\main\java\com\vmwareTalantBoost\ics\Image\Classes\Image.java
-C:\Users\User\OneDrive\Работен плот\tempProj\ics_project\src\main\java\com\vmwareTalantBoost\ics\IcsApplication.java
-C:\Users\User\OneDrive\Работен плот\tempProj\ics_project\src\main\java\com\vmwareTalantBoost\ics\Image\Services\UserService.java
-C:\Users\User\OneDrive\Работен плот\tempProj\ics_project\src\main\java\com\vmwareTalantBoost\ics\Image\Classes\User.java
-C:\Users\User\OneDrive\Работен плот\tempProj\ics_project\src\main\java\com\vmwareTalantBoost\ics\Image\Controllers\TagsController.java
-C:\Users\User\OneDrive\Работен плот\tempProj\ics_project\src\main\java\com\vmwareTalantBoost\ics\Image\Repositories\ImageRepository.java
-C:\Users\User\OneDrive\Работен плот\tempProj\ics_project\src\main\java\com\vmwareTalantBoost\ics\Image\Classes\Tag.java
-C:\Users\User\OneDrive\Работен плот\tempProj\ics_project\src\main\java\com\vmwareTalantBoost\ics\Image\Services\ImaggaService.java
+/home/nikolnikolaeva/Desktop/ics_project/src/main/java/ics/Image/Controllers/ImageController.java
+/home/nikolnikolaeva/Desktop/ics_project/src/main/java/ics/Image/Repositories/TagRepository.java
+/home/nikolnikolaeva/Desktop/ics_project/src/main/java/ics/IcsApplication.java
+/home/nikolnikolaeva/Desktop/ics_project/src/main/java/ics/Image/Services/UserService.java
+/home/nikolnikolaeva/Desktop/ics_project/src/main/java/ics/Image/Services/TagService.java
+/home/nikolnikolaeva/Desktop/ics_project/src/main/java/ics/Image/Services/ImageService.java
+/home/nikolnikolaeva/Desktop/ics_project/src/main/java/ics/Image/Services/ImaggaService.java
+/home/nikolnikolaeva/Desktop/ics_project/src/main/java/ics/Image/Classes/Image.java
+/home/nikolnikolaeva/Desktop/ics_project/src/main/java/ics/Image/Controllers/UserController.java
+/home/nikolnikolaeva/Desktop/ics_project/src/main/java/ics/Image/Classes/Tag.java
+/home/nikolnikolaeva/Desktop/ics_project/src/main/java/ics/Image/Repositories/UserRepository.java
+/home/nikolnikolaeva/Desktop/ics_project/src/main/java/ics/Image/Controllers/TagsController.java
+/home/nikolnikolaeva/Desktop/ics_project/src/main/java/ics/Greeting.java
+/home/nikolnikolaeva/Desktop/ics_project/src/main/java/ics/Image/Classes/User.java
+/home/nikolnikolaeva/Desktop/ics_project/src/main/java/ics/Image/Repositories/ImageRepository.java
+/home/nikolnikolaeva/Desktop/ics_project/src/main/java/ics/GreetingController.java
