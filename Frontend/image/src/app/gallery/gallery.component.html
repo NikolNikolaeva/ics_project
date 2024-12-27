@@ -17,6 +17,7 @@
   <div id="buttons">
     <button (click)="getImagesByTags()" class="btn btn-sm">Filter</button>
     <button (click)="getAllImages()" class="btn btn-sm">All images</button>
+    <button (click)="getMyImages(localStorage.getItem('userToken')||'')" class="btn btn-sm">My images</button>
   </div>
 </div>
 

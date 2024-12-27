@@ -29,6 +29,12 @@ public class ImageController {
     public List<Image> getListImages(@RequestParam(required = false) List<String> tags) {
         return imageService.listOfImages(tags);
     }
+
+    @GetMapping(path="/user")
+    public List<Image> getListImagesById(@RequestParam("userId") String userId) {
+        return imageService.listOfImagesByUserId(userId);
+    }
+
     @GetMapping(path = "/id")
     public Image getImageById(@RequestParam long id) {
         return imageService.getImageById(id);

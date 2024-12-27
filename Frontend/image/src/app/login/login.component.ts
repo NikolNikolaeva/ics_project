@@ -35,7 +35,6 @@ export class LoginComponent {
     this.userService.getUserByUsername(username.value).subscribe({
       next: (user: User) => {
         this.user = user;
-        console.log('User data:', this.user);
       },
       error: (error) => {
         console.error('Error fetching user data:', error);

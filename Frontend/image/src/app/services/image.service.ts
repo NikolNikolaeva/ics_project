@@ -14,12 +14,15 @@ export class ImageService {
   }
 
   public getImages() {
-    console.log(this.apiServerUrl);
     return this.http.get<Image[]>(`${this.apiServerUrl}`);
   }
 
   public getImagesByTag(tags: string[]): Observable<Image[]> {
     return this.http.get<Image[]>(`${this.apiServerUrl}?tags=${tags}`);
+  }
+
+  public getImagesByUserId(userId: string): Observable<Image[]> {
+    return this.http.get<Image[]>(`${this.apiServerUrl}/user?userId=${userId}`);
   }
 
   public getImageById(id:number): Observable<Image> {
