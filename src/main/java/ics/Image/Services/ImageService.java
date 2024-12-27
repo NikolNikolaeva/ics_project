@@ -57,10 +57,13 @@ public class ImageService {
         URL url;
         try {
             url = new URL(imageUrl);
-            URLConnection connection = url.openConnection();
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
-        } catch (IOException e) {
+
+        }
+        try {
+            URLConnection connection = url.openConnection();
+        }catch (IOException e) {
             throw new RuntimeException(e);
         }
 
