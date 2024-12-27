@@ -1,5 +1,6 @@
 package ics.Image.Repositories;
 
+import ics.Image.Classes.Image;
 import ics.Image.Classes.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -28,6 +29,4 @@ public interface UserRepository extends JpaRepository<User,Long> {
 
     @Query("SELECT u FROM User u WHERE u.username = ?1 AND u.email = ?2")
     Optional<User> findUserExistByUsernameAndEmail(String username, String email);
-
-
 }

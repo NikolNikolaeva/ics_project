@@ -12,6 +12,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.*;
 
+import ics.Image.Repositories.UserRepository;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister;
@@ -98,6 +99,10 @@ public class ImageService {
             return imageRepository.findImagesByTags(tags);
         }
             return imageRepository.findAllImages();
+    }
+
+    public List<Image> listOfImagesByUserId(String userId) {
+            return imageRepository.findImagesByUserId(Long.parseLong(userId));
     }
 
     public Image getImageId(String url) {

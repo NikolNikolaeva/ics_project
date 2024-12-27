@@ -58,6 +58,14 @@ export class GalleryComponent implements OnInit {
     );
   }
 
+  private getImagesByUserId(userId: string){
+    this.imageService.getImagesByUserId(userId).subscribe(
+      (imagesByUser) => {
+        this.images = imagesByUser;
+      }
+    );
+  }
+
   getTags() {
     this.tagService.getTags().subscribe(
       (tags) => {
@@ -78,6 +86,15 @@ export class GalleryComponent implements OnInit {
     }
 
   }
+
+  getMyImages(userId: string) {
+    this.imageService.getImagesByUserId(userId).subscribe(
+      (images) => {
+        this.images = images
+      }
+    );
+  }
+
   getImagesByTags() {
     let container = document.querySelectorAll<HTMLElement>('ng-container')[0];
     this.tagsNames = this.getSelectedTags();
@@ -92,9 +109,9 @@ export class GalleryComponent implements OnInit {
       this.tagsNames = this.tagParam;
       this.getImages();
       this.tagParam.pop();
-      console.log(this.tagParam)
     }
   }
 
 
+  protected readonly localStorage = localStorage;
 }
