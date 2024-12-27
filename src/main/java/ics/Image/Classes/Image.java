@@ -1,6 +1,9 @@
 package ics.Image.Classes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.Date;
 import java.util.List;
@@ -40,8 +43,8 @@ public class Image {
             inverseJoinColumns = @JoinColumn(name = "tag_id"))
     List<Tag> tags;
 
-    @ManyToMany(mappedBy = "images")
-    Set<User> users;
+    @ManyToOne
+    User user;
 
     public List<Tag> getTags() {
         return tags;
@@ -109,6 +112,10 @@ public class Image {
         return width;
     }
 
+    public User getUser() {
+        return user;
+    }
+
     public void setId(long id) {
         this.id = id;
     }
@@ -132,6 +139,11 @@ public class Image {
     public void setWidth(float width) {
         this.width = width;
     }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
 
     public Image(String url, float height, float width) {
         this.url = url;

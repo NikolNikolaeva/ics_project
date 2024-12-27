@@ -24,7 +24,6 @@ export class AnalyseComponent implements OnInit {
   async submitDemo() {
     this.submitBtnState = ClrLoadingState.LOADING;
     setTimeout(() => this.submitBtnState = ClrLoadingState.DEFAULT, 1000);
-
   }
 
   navigateToResultView(id: number) {

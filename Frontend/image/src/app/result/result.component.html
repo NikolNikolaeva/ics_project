@@ -6,6 +6,7 @@
     </a>
     </aside>
   <div id="tags-list">
+    <span>User: {{imageToAnalyse?.user?.username}}</span>
     <div>
     <div *ngFor="let tag of imageToAnalyse?.tags">
       <span (click)="navigateToResultView(tag.name)" class="label label-blue">{{tag.name}}</span>

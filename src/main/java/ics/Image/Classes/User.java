@@ -19,7 +19,7 @@ public class User {
     @Column(name="email")
     private String email;
 
-    @ManyToMany
+    @OneToMany
     @JoinTable(
             name = "user_image",
             joinColumns = @JoinColumn(name = "user_id"),

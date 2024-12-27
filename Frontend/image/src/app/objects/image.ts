@@ -1,4 +1,5 @@
 import {Tag} from "./tag";
+import {User} from "./user";
 
 export interface Image{
   id:number;
@@ -8,5 +9,5 @@ export interface Image{
   url:string;
   width:number;
   tags: Tag[];
-
+  user: User;
 }

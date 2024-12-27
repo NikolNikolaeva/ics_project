@@ -27,8 +27,8 @@ export class AuthService {
   logout(): void {
     localStorage.removeItem('userToken');
   }
-  login(username:string): void {
-    localStorage.setItem('userToken',username);
+  login(userId:number): void {
+    localStorage.setItem('userToken',userId.toString());
   }
 
   isLoggedIn(): boolean {

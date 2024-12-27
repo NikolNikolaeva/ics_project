@@ -7,6 +7,7 @@ ics/GreetingController.class
 ics/Image/Controllers/UserController.class
 ics/Image/Controllers/TagsController.class
 ics/Image/Repositories/TagRepository.class
+ics/Image/Classes/ImageRequestDTO.class
 ics/Image/Repositories/UserRepository.class
 ics/Image/Services/TagService.class
 ics/Image/Services/ImaggaService.class
