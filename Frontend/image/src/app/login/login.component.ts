@@ -56,7 +56,7 @@ export class LoginComponent {
           this.router.navigateByUrl(`/analyse`)
             .then(r => {
               // @ts-ignore
-              this.authService.login(username.value)
+              this.authService.login(user.id)
             })
         }
       }

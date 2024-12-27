@@ -1,6 +1,7 @@
 package ics.Image.Controllers;
 
 import ics.Image.Classes.Image;
+import ics.Image.Classes.ImageRequestDTO;
 import ics.Image.Classes.Tag;
 import ics.Image.Services.ImageService;
 import ics.Image.Services.ImaggaService;
@@ -34,24 +35,27 @@ public class ImageController {
     }
 
     @PostMapping
-    public Image registerNewImage(@RequestBody String url){
+    public Image registerNewImage(@RequestBody ImageRequestDTO data){
+
+        String imgUrl=data.getImgUrl();
+        String token=data.getToken();
 
         //if image url already exist in our database
-         if(imageService.existImage(url))
+         if(imageService.existImage(imgUrl))
          {
-             return imageService.getImageByUrl(url);
+             return imageService.getImageByUrl(imgUrl);
          }
 
         Image image=new Image();
         image.setService("Imagga");
-        image.setUrl(url);
+        image.setUrl(imgUrl);
         List<Tag> tags=new ArrayList<Tag>();
-        tags = imaggaService.getTagsFromImage(url);
+        tags = imaggaService.getTagsFromImage(imgUrl);
 
         image.setTags(tags);
         imageService.saveTagsInDatabase(tags);
 
-        return imageService.addNewImage(image);
+        return imageService.addNewImage(image, token);
     }
 
     @DeleteMapping(path="/delete/{id}")

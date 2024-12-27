@@ -26,12 +26,14 @@ public class ImageService {
 
     final private ImageRepository imageRepository;
     final private TagRepository tagRepository;
-   // final private Image_tagRepository imageTagRepository;
+    private final UserService userService;
+    // final private Image_tagRepository imageTagRepository;
 
     @Autowired
-    public ImageService(ImageRepository imageRepository, TagRepository tagRepository ) {
+    public ImageService(ImageRepository imageRepository, TagRepository tagRepository, UserService userService) {
         this.imageRepository = imageRepository;
         this.tagRepository = tagRepository;
+        this.userService = userService;
     }
 
     public List<Image> getImages() {
@@ -49,15 +51,14 @@ public class ImageService {
     }
 
     //function return true or false depends on if it is saved as new
-    public Image addNewImage(Image image) {
+    public Image addNewImage(Image image,String userId) {
 
         String imageUrl = image.getUrl();
         URL url;
         try {
             url = new URL(imageUrl);
             URLConnection connection = url.openConnection();
-        } catch (MalformedURLException e) {
-            throw new RuntimeException(e);
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -76,6 +77,7 @@ public class ImageService {
         image.setHeight(height);
         image.setWidth(width);
         image.setUrl(imageUrl);
+        image.setUser(userService.getUserById(Long.parseLong(userId)));
         imageRepository.save(image);
         return image;
     }

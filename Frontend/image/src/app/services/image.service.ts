@@ -26,8 +26,12 @@ export class ImageService {
     return this.http.get<Image>(`${this.apiServerUrl}/id?id=${id}`);
   }
 
-  public addImage(imageUrl: string): Observable<Image> {
-    return this.http.post<Image>(`${this.apiServerUrl}`, imageUrl);
+  public addImage(imageUrl: string): Observable<ArrayBuffer> {
+    const body = {
+      imgUrl: imageUrl,
+      token: localStorage.getItem('userToken') || '' // Ensure token is a string
+    };
+    return this.http.post<ArrayBuffer>(`${this.apiServerUrl}`,body);
   }
 
   // public deleteImage(imageId: number): Observable<void> {
