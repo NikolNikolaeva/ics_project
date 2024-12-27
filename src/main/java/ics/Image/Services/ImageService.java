@@ -58,7 +58,8 @@ public class ImageService {
         URL url;
         try {
             url = new URL(imageUrl);
-            URLConnection connection = url.openConnection();
+            URL urlConnection = new URL(url.toString());
+            URLConnection connection = urlConnection.openConnection();
 
         } catch (IOException e) {
             throw new RuntimeException(e);
