@@ -60,10 +60,7 @@ public class ImageService {
             url = new URL(imageUrl);
             URLConnection connection = url.openConnection();
 
-        } catch (MalformedURLException e) {
-            throw new RuntimeException(e);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
