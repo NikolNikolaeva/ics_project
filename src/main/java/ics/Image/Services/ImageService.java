@@ -54,16 +54,16 @@ public class ImageService {
     public Image addNewImage(Image image,String userId) {
 
         String imageUrl = image.getUrl();
+        validateUrl(imageUrl);
         URL url;
         try {
             url = new URL(imageUrl);
+            URLConnection connection = url.openConnection();
+
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
-
         }
-        try {
-            URLConnection connection = url.openConnection();
-        }catch (IOException e) {
+        catch (IOException e) {
             throw new RuntimeException(e);
         }
 
@@ -151,6 +151,14 @@ public class ImageService {
             }
         }
             return imageRepository.findImageById(id);
+    }
+
+    private void validateUrl(String url) {
+        try {
+            URL parsedUrl = new URL(url);
+        } catch (MalformedURLException e) {
+            throw new RuntimeException("Invalid URL format");
+        }
     }
 }
 
