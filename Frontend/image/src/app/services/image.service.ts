@@ -29,10 +29,11 @@ export class ImageService {
     return this.http.get<Image>(`${this.apiServerUrl}/id?id=${id}`);
   }
 
-  public addImage(imageUrl: string): Observable<ArrayBuffer> {
+  public addImage(imageUrl: string, privateImg: boolean): Observable<ArrayBuffer> {
     const body = {
       imgUrl: imageUrl,
-      token: localStorage.getItem('userToken') || '' // Ensure token is a string
+      token: localStorage.getItem('userToken') || '' ,
+      privateImg: privateImg,
     };
     return this.http.post<ArrayBuffer>(`${this.apiServerUrl}`,body);
   }

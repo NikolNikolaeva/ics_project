@@ -35,6 +35,8 @@ public class Image {
     private float height;
     @Column(name="width")
     private float width;
+    @Column(name="privateImg")
+    private boolean privateImg;
 
     @ManyToMany
     @JoinTable(
@@ -144,6 +146,13 @@ public class Image {
         this.user = user;
     }
 
+    public void setPrivateImg(boolean privateImg) {
+        this.privateImg = privateImg;
+    }
+
+    public boolean isPrivateImg() {
+        return privateImg;
+    }
 
     public Image(String url, float height, float width) {
         this.url = url;
@@ -161,6 +170,8 @@ public class Image {
                 ", height=" + height +
                 ", width=" + width +
                 ", tags="+ tags +
+                ", user=" + user.getUsername() +
+                ", privateImg=" + privateImg +
                 '}';
     }
 }

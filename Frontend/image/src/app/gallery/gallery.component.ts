@@ -53,7 +53,9 @@ export class GalleryComponent implements OnInit {
   private getImages(){
     this.imageService.getImagesByTag(this.tagsNames).subscribe(
       (imagesByTags) => {
-        this.images = imagesByTags;
+        this.images = imagesByTags.filter((i) => {
+          return !i.privateImg || i.user.id?.toString() === localStorage.getItem("userToken")
+        })
       }
     );
   }
@@ -78,7 +80,7 @@ export class GalleryComponent implements OnInit {
     if (this.imagesAll.length == 0) {
       this.imageService.getImages().subscribe(
         (images) => {
-          this.images = images;
+          this.images = images.filter((i)=>i.privateImg===false);
         }
       );
     } else {

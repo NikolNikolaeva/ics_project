@@ -10,4 +10,5 @@ export interface Image{
   width:number;
   tags: Tag[];
   user: User;
+  privateImg:boolean;
 }

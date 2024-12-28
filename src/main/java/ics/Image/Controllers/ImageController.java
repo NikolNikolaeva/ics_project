@@ -45,6 +45,7 @@ public class ImageController {
 
         String imgUrl=data.getImgUrl();
         String token=data.getToken();
+        Boolean privateImg=data.isPrivateImg();
 
         //if image url already exist in our database
          if(imageService.existImage(imgUrl))
@@ -55,6 +56,7 @@ public class ImageController {
         Image image=new Image();
         image.setService("Imagga");
         image.setUrl(imgUrl);
+        image.setPrivateImg(privateImg);
         List<Tag> tags=new ArrayList<Tag>();
         tags = imaggaService.getTagsFromImage(imgUrl);
 

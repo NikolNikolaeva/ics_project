@@ -30,14 +30,16 @@ export class AnalyseComponent implements OnInit {
     this.router.navigateByUrl(`/result/${id}`);
   }
 
-  getImageByUrl() {
+  getImageByUrl(privacyImg: string) {
     let inputEl = document.querySelectorAll<HTMLElement>('#url')[0];
     // @ts-ignore
     let url = inputEl.value;
     if (url != '')
       this.submitDemo();
 
-    this.imageService.addImage(url).subscribe(
+    let privateImg = privacyImg.toLowerCase()==="private";
+
+    this.imageService.addImage(url,privateImg).subscribe(
       (image) => {
         this.imageToAnalyse = image;
         const successEl = document.querySelectorAll<HTMLElement>('.alert-success')[0];
