@@ -11,19 +11,13 @@ import java.util.List;
 public class CommentService {
 
     final CommentRepository commentRepository;
-    final ImageService imageService;
 
     @Autowired
-    public CommentService(CommentRepository commentRepository, ImageService imageService) {
+    public CommentService(CommentRepository commentRepository) {
         this.commentRepository = commentRepository;
-        this.imageService = imageService;
     }
 
     public Comment addComment(Comment comment) {
         return commentRepository.save(comment);
-    }
-
-    public List<Comment> getCommentsByImageId(long imageId) {
-        return commentRepository.findAllByImageId(imageId);
     }
 }

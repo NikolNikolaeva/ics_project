@@ -28,9 +28,6 @@ public class Comment {
     @Column(name="date")
     private Date date;
 
-    @ManyToOne
-    Image image;
-
     public Comment(String commentText, String author, Date date) {
         this.commentText = commentText;
         this.author = author;

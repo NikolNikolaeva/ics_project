@@ -13,11 +13,6 @@ export class CommentService {
   constructor(private http: HttpClient) {
   }
 
-  public getCommentsByImageId(imageId: number):Observable<Comment[]> {
-    return this.http.get<Comment[]>(`${this.apiServerUrl}/imageId?imageId=${imageId}`);
-  }
-
-
   public addComments(comment: Comment): Observable<ArrayBuffer> {
     return this.http.post<ArrayBuffer>(`${this.apiServerUrl}`,comment);
   }

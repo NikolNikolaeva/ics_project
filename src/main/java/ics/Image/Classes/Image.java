@@ -177,6 +177,12 @@ public class Image {
         this.dislikes = dislikes;
     }
 
+    public List<Comment> getComments() {
+        return comments;
+    }
+   public void setComments(List<Comment> comments) {
+        this.comments = comments;
+   }
     public Image(String url, float height, float width) {
         this.url = url;
         this.height = height;

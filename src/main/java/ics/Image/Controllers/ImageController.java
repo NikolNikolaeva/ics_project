@@ -1,10 +1,12 @@
 package ics.Image.Controllers;
 
+import ics.Image.Classes.Comment;
 import ics.Image.Classes.Image;
 import ics.Image.Classes.ImageRequestDTO;
 import ics.Image.Classes.Tag;
 import ics.Image.Services.ImageService;
 import ics.Image.Services.ImaggaService;
+import jakarta.persistence.PostUpdate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -64,6 +66,11 @@ public class ImageController {
         imageService.saveTagsInDatabase(tags);
 
         return imageService.addNewImage(image, token);
+    }
+
+    @PutMapping(path = "/update")
+    public Image updateImage(@RequestBody Image image){
+       return imageService.updateImage(image);
     }
 
     @DeleteMapping(path="/delete/{id}")

@@ -15,6 +15,4 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
     @Query("SELECT s FROM Comment s where s.id = ?1")
     Optional<Comment> findCommentById(long id);
 
-    @Query("SELECT s FROM Comment s where s.image.id = ?1")
-    List<Comment> findAllByImageId(long id);
 }
