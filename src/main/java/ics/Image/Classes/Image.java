@@ -7,7 +7,6 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table
@@ -37,6 +36,10 @@ public class Image {
     private float width;
     @Column(name="privateImg")
     private boolean privateImg;
+    @Column(name="likes")
+    private long likes;
+    @Column(name="dislikes")
+    private long dislikes;
 
     @ManyToMany
     @JoinTable(
@@ -47,6 +50,13 @@ public class Image {
 
     @ManyToOne
     User user;
+
+    @OneToMany
+    @JoinTable(
+            name = "image_comments",
+            joinColumns = @JoinColumn(name = "image_id"),
+            inverseJoinColumns = @JoinColumn(name = "comment_id"))
+    List<Comment> comments;
 
     public List<Tag> getTags() {
         return tags;
@@ -154,6 +164,25 @@ public class Image {
         return privateImg;
     }
 
+    public long getLikes() {
+        return likes;
+    }
+    public void setLikes(long likes) {
+        this.likes = likes;
+    }
+    public long getDislikes() {
+        return dislikes;
+    }
+    public void setDislikes(long dislikes) {
+        this.dislikes = dislikes;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+   public void setComments(List<Comment> comments) {
+        this.comments = comments;
+   }
     public Image(String url, float height, float width) {
         this.url = url;
         this.height = height;

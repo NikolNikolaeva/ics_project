@@ -1,5 +1,6 @@
 import {Tag} from "./tag";
 import {User} from "./user";
+import {Comment} from "./comment";
 
 export interface Image{
   id:number;
@@ -11,4 +12,7 @@ export interface Image{
   tags: Tag[];
   user: User;
   privateImg:boolean;
+  likes:number;
+  dislikes:number;
+  comments:Comment[];
 }

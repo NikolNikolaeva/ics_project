@@ -29,6 +29,11 @@ export class ImageService {
     return this.http.get<Image>(`${this.apiServerUrl}/id?id=${id}`);
   }
 
+  public updateImage(image:Image): Observable<Image> {
+    return this.http.put<Image>(`${this.apiServerUrl}/update`,image);
+  }
+
+
   public addImage(imageUrl: string, privateImg: boolean): Observable<ArrayBuffer> {
     const body = {
       imgUrl: imageUrl,

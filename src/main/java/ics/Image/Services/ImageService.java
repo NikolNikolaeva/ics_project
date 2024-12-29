@@ -1,7 +1,9 @@
 package ics.Image.Services;
 
+import ics.Image.Classes.Comment;
 import ics.Image.Classes.Image;
 import ics.Image.Classes.Tag;
+import ics.Image.Repositories.CommentRepository;
 import ics.Image.Repositories.ImageRepository;
 import ics.Image.Repositories.TagRepository;
 
@@ -28,13 +30,15 @@ public class ImageService {
     final private ImageRepository imageRepository;
     final private TagRepository tagRepository;
     private final UserService userService;
+    private final CommentRepository commentRepository;
     // final private Image_tagRepository imageTagRepository;
 
     @Autowired
-    public ImageService(ImageRepository imageRepository, TagRepository tagRepository, UserService userService) {
+    public ImageService(ImageRepository imageRepository, TagRepository tagRepository, UserService userService, CommentService commentService, CommentRepository commentRepository) {
         this.imageRepository = imageRepository;
         this.tagRepository = tagRepository;
         this.userService = userService;
+        this.commentRepository = commentRepository;
     }
 
     public List<Image> getImages() {
@@ -81,6 +85,26 @@ public class ImageService {
         image.setUser(userService.getUserById(Long.parseLong(userId)));
         imageRepository.save(image);
         return image;
+    }
+
+    public Image updateImage(Image image) {
+        Image updateImg=imageRepository.findImageById(image.getId());
+
+        if(image==null) {
+            return null;
+        }
+        if (image.getComments().size() != updateImg.getComments().size()) {
+            updateImg.setComments(image.getComments());
+            commentRepository.saveAll(updateImg.getComments());
+        }
+        if(image.getLikes() != updateImg.getLikes()) {
+            updateImg.setLikes(image.getLikes());
+        }
+        if(image.getDislikes() != updateImg.getDislikes()) {
+            updateImg.setDislikes(image.getDislikes());
+        }
+        imageRepository.save(updateImg);
+        return updateImg;
     }
 
     public void saveTagsInDatabase(List<Tag> tagsToSave)
