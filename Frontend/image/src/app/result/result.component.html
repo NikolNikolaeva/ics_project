@@ -1,22 +1,70 @@
-
-<section id="image-analysed">
-  <aside id="imageAnalyse">
-    <a  class="card clickable card-img">
-      <img src="{{imageToAnalyse.url}}" alt="image" id="image"/>
-    </a>
-    </aside>
-  <div id="tags-list">
-    <span>User: {{imageToAnalyse?.user?.username}}</span>
-    <div>
-    <div *ngFor="let tag of imageToAnalyse?.tags">
-      <span (click)="navigateToResultView(tag.name)" class="label label-blue">{{tag.name}}</span>
-      <span class="confidence">{{tag.confidence}}%</span>
-    </div>
-    </div>
-    <span>Uploaded time: {{imageToAnalyse?.uploadTime}}</span><br>
+<div class="card">
+  <div class="card-img">
+    <img src="{{imageToAnalyse?.url}}" alt="Image" id="image" />
   </div>
+  <div class="card-block">
+    <div class="user-info">
+      <span class="label-info">User: </span>
+      <span class="user-name">{{imageToAnalyse?.user?.username}}</span>
+    </div>
+    <div class="user-info">
+      <span class="label-info">Uploaded at: </span>
+      <span class="uploaded-time">{{imageToAnalyse?.uploadTime | date:'h:mm:ss a d/MM/yyyy'}}</span>
+    </div>
+  </div>
+  <div class="tags-container">
+    <div *ngFor="let tag of imageToAnalyse?.tags" class="tag-item">
+      <a class="label label-light-blue clickable">
+        <span (click)="navigateToResultView(tag.name)" class="text">{{tag.name}}</span>
+        <span class="badge">{{tag.confidence}}</span>
+      </a>
+    </div>
+  </div>
+</div>
 
-</section>
+<div class="action-item">
+  <button type="button" class="btn btn-icon" aria-label="like" (click)="likeImageWithId(imageToAnalyse?.id)">
+    <cds-icon shape="thumbs-up"></cds-icon>
+    <span class="like-count" *ngIf="imageToAnalyse?.likes !== undefined">{{imageToAnalyse?.likes}}</span>
+  </button>
 
+  <button type="button" class="btn btn-icon" aria-label="dislike" (click)="dislikeImageWithId(imageToAnalyse?.id)">
+    <cds-icon shape="thumbs-down"></cds-icon>
+    <span class="dislike-count" *ngIf="imageToAnalyse?.dislikes !== undefined">{{imageToAnalyse?.dislikes}}</span>
+  </button>
 
+  <button type="button" class="btn btn-icon" aria-label="comment">
+    <cds-icon shape="talk-bubbles"></cds-icon>
+  </button>
 
+  <button type="button" class="btn btn-icon" aria-label="download" (click)="downloadImage(imageToAnalyse?.url)">
+    <cds-icon shape="download"></cds-icon>
+  </button>
+</div>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th class="left">User</th>
+    <th>Time</th>
+    <th class="left">Comment</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td class="left">Nikol</td>
+    <td>12/30/2024</td>
+    <td class="left">There is a comment</td>
+  </tr>
+  <tr>
+    <td class="left">Vasi</td>
+    <td>12/30/2024</td>
+    <td class="left">and another comment here</td>
+  </tr>
+  <tr>
+    <td class="left">Gabi</td>
+    <td>12/30/2024</td>
+    <td class="left">Mnogo qka snimka</td>
+  </tr>
+  </tbody>
+</table>
