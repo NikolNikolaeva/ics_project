@@ -1,6 +1,6 @@
 export interface Comment{
   id:number;
-  comment:String;
+  commentText:String;
   author:string;
   date:Date;
 }

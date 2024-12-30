@@ -16,5 +16,4 @@ export class CommentService {
   public addComments(comment: Comment): Observable<ArrayBuffer> {
     return this.http.post<ArrayBuffer>(`${this.apiServerUrl}`,comment);
   }
-
 }
