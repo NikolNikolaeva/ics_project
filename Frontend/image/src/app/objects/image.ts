@@ -15,4 +15,5 @@ export interface Image{
   likes:number;
   dislikes:number;
   comments:Comment[];
+  usersRated:string;
 }

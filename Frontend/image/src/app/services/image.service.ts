@@ -43,7 +43,7 @@ export class ImageService {
     return this.http.post<ArrayBuffer>(`${this.apiServerUrl}`,body);
   }
 
-  // public deleteImage(imageId: number): Observable<void> {
-  //   return this.http.delete<void>(`${this.apiServerUrl}/delete/${imageId}`);
-  // }
+  public deleteImage(imageId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiServerUrl}/delete/${imageId}`);
+  }
 }

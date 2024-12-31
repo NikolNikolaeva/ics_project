@@ -40,6 +40,8 @@ public class Image {
     private long likes;
     @Column(name="dislikes")
     private long dislikes;
+    @Column(name="usersRated")
+    private String usersRated;
 
     @ManyToMany
     @JoinTable(
@@ -176,6 +178,8 @@ public class Image {
     public void setDislikes(long dislikes) {
         this.dislikes = dislikes;
     }
+    public String getUsersRated() { return usersRated; }
+    public void setUsersRated(String usersRated) { this.usersRated = usersRated; }
 
     public List<Comment> getComments() {
         return comments;

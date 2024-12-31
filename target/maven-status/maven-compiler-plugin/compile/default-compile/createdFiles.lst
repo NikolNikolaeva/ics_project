@@ -8,10 +8,8 @@ ics/Image/Controllers/UserController.class
 ics/GreetingController.class
 ics/Image/Classes/Comment.class
 ics/Image/Controllers/TagsController.class
-ics/Image/Controllers/CommentController.class
 ics/Image/Repositories/TagRepository.class
 ics/Image/Classes/ImageRequestDTO.class
-ics/Image/Services/CommentService.class
 ics/Image/Repositories/UserRepository.class
 ics/Image/Services/TagService.class
 ics/Image/Services/ImageService.class

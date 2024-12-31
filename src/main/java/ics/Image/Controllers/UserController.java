@@ -24,10 +24,10 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-    //@GetMapping(path = "/id")
-    //public User getUserById(@RequestParam long id) {
-    //    return userService.getUserById(id);
-    //}
+    @GetMapping(path = "/id")
+    public User getUserById(@RequestParam long id) {
+        return userService.getUserById(id);
+    }
 
     @GetMapping(path = "username/{username}")
     public User getUserByUsername(@PathVariable String username) {

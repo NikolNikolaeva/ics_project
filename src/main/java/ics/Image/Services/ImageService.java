@@ -31,10 +31,9 @@ public class ImageService {
     final private TagRepository tagRepository;
     private final UserService userService;
     private final CommentRepository commentRepository;
-    // final private Image_tagRepository imageTagRepository;
 
     @Autowired
-    public ImageService(ImageRepository imageRepository, TagRepository tagRepository, UserService userService, CommentService commentService, CommentRepository commentRepository) {
+    public ImageService(ImageRepository imageRepository, TagRepository tagRepository, UserService userService, CommentRepository commentRepository) {
         this.imageRepository = imageRepository;
         this.tagRepository = tagRepository;
         this.userService = userService;
@@ -102,6 +101,15 @@ public class ImageService {
         }
         if(image.getDislikes() != updateImg.getDislikes()) {
             updateImg.setDislikes(image.getDislikes());
+        }
+
+        if ((image.getUsersRated() != null && !image.getUsersRated().isEmpty()) &&
+                (updateImg.getUsersRated() != null && !updateImg.getUsersRated().isEmpty())) {
+            if (image.getUsersRated().length() != updateImg.getUsersRated().length()) {
+                updateImg.setUsersRated(image.getUsersRated());
+            }
+        } else if (image.getUsersRated() != null && !image.getUsersRated().isEmpty()) {
+            updateImg.setUsersRated(image.getUsersRated());
         }
         imageRepository.save(updateImg);
         return updateImg;
