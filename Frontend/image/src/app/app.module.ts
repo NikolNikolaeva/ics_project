@@ -13,6 +13,8 @@ import {ResultComponent} from "./result/result.component";
 import {AnalyseComponent} from "./analyse/analyse.component";
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
+import {StatisticsComponent} from "./statistics/statistics.component";
+import {ProfileComponent} from "./profile/profile.component";
 
 // @ts-ignore
 @NgModule({
@@ -21,6 +23,8 @@ import { RegistrationComponent } from './registration/registration.component';
     GalleryComponent,
     ResultComponent,
     AnalyseComponent,
+    StatisticsComponent,
+    ProfileComponent,
     LoginComponent,
     RegistrationComponent
   ],

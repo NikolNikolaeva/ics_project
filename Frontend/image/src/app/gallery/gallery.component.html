@@ -23,13 +23,9 @@
 
 <section id="gallery">
   <div class="image" *ngFor="let image of images">
-<!--    <div class="clr-row">-->
-<!--      <div class="clr-col-lg-6 clr-col-12">-->
-        <a class="card clickable card-img">
-          <img (click)="navigateToResultView(image.id)" src="{{image?.url}}" alt="image" />
-        </a>
-<!--      </div>-->
-<!--    </div>-->
+    <a class="card clickable card-img">
+      <img (click)="navigateToResultView(image.id)" src="{{image?.url}}" alt="image" />
+    </a>
   </div>
 </section>
 

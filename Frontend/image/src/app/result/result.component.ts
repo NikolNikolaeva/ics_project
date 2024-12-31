@@ -99,7 +99,7 @@ export class ResultComponent implements OnInit {
           image.dislikes += 1;
           usersRated.push(this.currentUser);
           image.usersRated = usersRated.join(',');
-          
+
           this.imageService.updateImage(image).subscribe(
             (updatedImage: Image) => {
               this.imageToAnalyse = updatedImage;
