@@ -8,6 +8,8 @@
     <ng-container *ngIf="authService.isLoggedIn()">
       <a routerLink="/analyse" id="analyse" class="nav-link" (click)="changeActiveAnalyse()"><span class="nav-text">Analyse</span></a>
       <a routerLink="/images" id="gallery" class="nav-link" (click)="changeActiveGallery()"><span class="nav-text">Gallery</span></a>
+      <a routerLink="/statistics" id="statistics" class="nav-link" (click)="changeActiveStatistics()"><span class="nav-text">Statistics</span></a>
+      <a routerLink="/profile" id="profile" class="nav-link" (click)="changeActiveProfile()"><span class="nav-text">Profile</span></a>
       <a routerLink="/" id="logout" class="nav-link" (click)="authService.logout()"><span class="nav-text">Log out</span></a>
     </ng-container>
   </div>

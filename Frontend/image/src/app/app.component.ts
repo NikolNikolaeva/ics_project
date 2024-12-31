@@ -26,25 +26,44 @@ export class AppComponent implements OnInit {
   }
 
   checkPageActivity() {
-
     const analyseBtn = document.querySelectorAll<HTMLElement>('#analyse')[0];
     const galleryBtn = document.querySelectorAll<HTMLElement>('#gallery')[0];
+    const statisticsBtn = document.querySelectorAll<HTMLElement>('#statistics')[0];
+    const profileBtn = document.querySelectorAll<HTMLElement>('#profile')[0];
 
     if (document.URL.includes("images")) {
       analyseBtn.classList.remove('active');
       galleryBtn.classList.add('active');
+      statisticsBtn.classList.remove('active');
+      profileBtn.classList.remove('active');
     } else if(document.URL.includes("analyse")){
       analyseBtn.classList.add('active');
       galleryBtn.classList.remove('active');
+      statisticsBtn.classList.remove('active');
+      profileBtn.classList.remove('active');
+    } else if(document.URL.includes("statistics")){
+      analyseBtn.classList.remove('active');
+      galleryBtn.classList.remove('active');
+      statisticsBtn.classList.add('active');
+      profileBtn.classList.remove('active');
+    } else if(document.URL.includes("profile")) {
+      analyseBtn.classList.remove('active');
+      galleryBtn.classList.remove('active');
+      statisticsBtn.classList.remove('active');
+      profileBtn.classList.add('active');
     }
   }
 
   changeActiveAnalyse() {
     const analyseBtn = document.querySelectorAll<HTMLElement>('#analyse')[0];
     const galleryBtn = document.querySelectorAll<HTMLElement>('#gallery')[0];
+    const statisticsBtn = document.querySelectorAll<HTMLElement>('#statistics')[0];
+    const profileBtn = document.querySelectorAll<HTMLElement>('#profile')[0];
     if (!analyseBtn.classList.contains('active')) {
       analyseBtn.classList.add('active');
       galleryBtn.classList.remove('active');
+      statisticsBtn.classList.remove('active');
+      profileBtn.classList.remove('active');
     }
 
   }
@@ -52,11 +71,39 @@ export class AppComponent implements OnInit {
   changeActiveGallery() {
     const analyseBtn = document.querySelectorAll<HTMLElement>('#analyse')[0];
     const galleryBtn = document.querySelectorAll<HTMLElement>('#gallery')[0];
+    const statisticsBtn = document.querySelectorAll<HTMLElement>('#statistics')[0];
+    const profileBtn = document.querySelectorAll<HTMLElement>('#profile')[0];
     if (!galleryBtn.classList.contains('active')) {
       analyseBtn.classList.remove('active');
       galleryBtn.classList.add('active');
+      statisticsBtn.classList.remove('active');
+      profileBtn.classList.remove('active');
     }
-
   }
 
+  changeActiveStatistics() {
+    const analyseBtn = document.querySelectorAll<HTMLElement>('#analyse')[0];
+    const galleryBtn = document.querySelectorAll<HTMLElement>('#gallery')[0];
+    const statisticsBtn = document.querySelectorAll<HTMLElement>('#statistics')[0];
+    const profileBtn = document.querySelectorAll<HTMLElement>('#profile')[0];
+    if (!statisticsBtn.classList.contains('active')) {
+      analyseBtn.classList.remove('active');
+      galleryBtn.classList.remove('active');
+      statisticsBtn.classList.add('active');
+      profileBtn.classList.remove('active');
+    }
+  }
+
+  changeActiveProfile() {
+    const analyseBtn = document.querySelectorAll<HTMLElement>('#analyse')[0];
+    const galleryBtn = document.querySelectorAll<HTMLElement>('#gallery')[0];
+    const statisticsBtn = document.querySelectorAll<HTMLElement>('#statistics')[0];
+    const profileBtn = document.querySelectorAll<HTMLElement>('#profile')[0];
+    if (!profileBtn.classList.contains('active')) {
+      analyseBtn.classList.remove('active');
+      galleryBtn.classList.remove('active');
+      statisticsBtn.classList.remove('active');
+      profileBtn.classList.add('active');
+    }
+  }
 }
