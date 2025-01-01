@@ -6,6 +6,7 @@ export interface User{
   email:string;
   password:string;
   images?:Image[];
+  picture:string;
 }
 
 export type CreateUser = Partial<User>;

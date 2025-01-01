@@ -47,7 +47,7 @@ export class RegistrationComponent {
           informDiv.innerHTML = `<p>User already exists</p>`;
         }
         else{
-          const newUser:User = {
+          const newUser:CreateUser = {
             // @ts-ignore
             username: username.value,
             // @ts-ignore

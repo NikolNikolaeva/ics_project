@@ -1,11 +1,13 @@
 package ics.Image.Services;
 
+import ics.Image.Classes.Image;
 import ics.Image.Classes.User;
 import ics.Image.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -54,5 +56,10 @@ public class UserService {
 
     public boolean userExistingUsername(String username){
         return userRepository.findUserByUsernameExist(username).isPresent();
+    }
+
+    public User updateUser(User user) {
+        userRepository.save(user);
+        return user;
     }
 }

@@ -3,6 +3,8 @@ import {environment} from "../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {User, CreateUser} from "../objects/user";
 import {Observable} from "rxjs";
+import {color} from "@dicebear/avatars";
+import {Image} from "../objects/image";
 
 @Injectable({
   providedIn: 'root'
@@ -25,12 +27,17 @@ export class UserService {
     return this.http.get<User>(`${this.apiServerUrl}/username/${username}`);
   }
 
-  public addUser(user: User): Observable<User> {
-    // @ts-ignore
+  public addUser(user: CreateUser): Observable<User> {
     return this.http.post<User>(`${this.apiServerUrl}`,user);
   }
 
   public getUserExistByUsername(username:string): Observable<User> {
     return this.http.get<User>(`${this.apiServerUrl}/${username}`);
   }
+
+  public updateUser(user: User): Observable<User> {
+    console.log(user)
+    return this.http.put<User>(`${this.apiServerUrl}/update`,user);
+  }
+
 }
