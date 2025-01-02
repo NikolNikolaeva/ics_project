@@ -1,28 +1,24 @@
 package ics.Image.Services;
 
-import ics.Image.Classes.Comment;
 import ics.Image.Classes.Image;
 import ics.Image.Classes.Tag;
+import ics.Image.Classes.TopActiveUserDTO;
+import ics.Image.Classes.TopTagDTO;
 import ics.Image.Repositories.CommentRepository;
 import ics.Image.Repositories.ImageRepository;
 import ics.Image.Repositories.TagRepository;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.*;
-
-import ics.Image.Repositories.UserRepository;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
 import javax.imageio.ImageIO;
-
-import static org.apache.logging.log4j.util.Strings.join;
 
 @Service
 public class ImageService {
@@ -185,8 +181,16 @@ public class ImageService {
         }
             return imageRepository.findImageById(id);
     }
+
+    public List<Image> getTop5MostLikedImages() {
+        return imageRepository.findMostLikedImages();
+    }
+
+    public List<TopTagDTO> getTop5MostUsedTags() {
+        return imageRepository.findTop5Tags();
+    }
+
+    public List<TopActiveUserDTO> findTop5UsersWithMostUploads() {
+        return imageRepository.findTop5UsersWithMostUploads();
+    }
 }
-
-
-
-

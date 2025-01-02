@@ -1,6 +1,7 @@
 package ics.Image.Repositories;
 
 
+import ics.Image.Classes.Image;
 import ics.Image.Classes.Tag;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

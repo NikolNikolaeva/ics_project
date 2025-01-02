@@ -13,7 +13,6 @@ import {ActivatedRoute, Router} from "@angular/router";
   styleUrls: ['gallery.component.scss']
 })
 export class GalleryComponent implements OnInit {
-  //title = 'ics';
   tags: Tag[] = [];
   images: Image[] = [];
   imagesAll: Image[] = [];
@@ -71,7 +70,11 @@ export class GalleryComponent implements OnInit {
   getTags() {
     this.tagService.getTags().subscribe(
       (tags) => {
-        this.tags = tags.sort();
+        const uniqueTags = tags.filter((tag, index, self) =>
+          index === self.findIndex(t => t.name === tag.name)
+        );
+
+        this.tags = uniqueTags.sort((a, b) => a.name.localeCompare(b.name));
       }
     );
   }

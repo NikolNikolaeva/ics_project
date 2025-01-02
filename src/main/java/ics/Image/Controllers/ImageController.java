@@ -1,14 +1,12 @@
 package ics.Image.Controllers;
 
-import ics.Image.Classes.Comment;
-import ics.Image.Classes.Image;
-import ics.Image.Classes.ImageRequestDTO;
-import ics.Image.Classes.Tag;
+import ics.Image.Classes.*;
 import ics.Image.Services.ImageService;
 import ics.Image.Services.ImaggaService;
-import jakarta.persistence.PostUpdate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,4 +76,18 @@ public class ImageController {
          imageService.deleteImage(imageId);
     }
 
+    @GetMapping(path = "/top-liked")
+    public List<Image> getTop5MostLikedImages() {
+        return imageService.getTop5MostLikedImages();
+    }
+
+    @GetMapping(path = "/top-tags")
+    public  List<TopTagDTO> getTop5MostUsedTags() {
+        return imageService.getTop5MostUsedTags();
+    }
+
+    @GetMapping(path = "/top-users")
+    public  List<TopActiveUserDTO> findTop5UsersWithMostUploads() {
+        return imageService.findTop5UsersWithMostUploads();
+    }
 }

@@ -7,8 +7,8 @@
       {{selected?.name}}
     </ng-container>
     <clr-options>
-      <clr-option *clrOptionItems="let tag of tags; field:'name'" [clrValue]="tag">
-         {{tag.name}}
+      <clr-option *ngFor="let tag of tags" [clrValue]="tag">
+        {{ tag.name }}
       </clr-option>
     </clr-options>
   </clr-combobox>
