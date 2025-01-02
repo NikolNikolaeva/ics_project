@@ -54,7 +54,6 @@ export class RegistrationComponent {
             email: email.value,
             // @ts-ignore
             password: password.value,
-            picture: "defaut-profile.jpg"
           };
           this.userService.addUser(newUser).subscribe({
             next: (response) => {

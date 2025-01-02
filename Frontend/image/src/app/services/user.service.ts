@@ -36,7 +36,6 @@ export class UserService {
   }
 
   public updateUser(user: User): Observable<User> {
-    console.log(user)
     return this.http.put<User>(`${this.apiServerUrl}/update`,user);
   }
 
