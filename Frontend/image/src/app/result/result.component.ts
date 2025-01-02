@@ -72,7 +72,6 @@ export class ResultComponent implements OnInit {
             usersRated.push(this.currentUser);
             image.usersRated = usersRated.join(',');
             image.likes += 1;
-            console.log(image)
             this.imageService.updateImage(image).subscribe(
               (updatedImage: Image) => this.imageToAnalyse = updatedImage,
               (error) => console.error('Error updating image:', error)

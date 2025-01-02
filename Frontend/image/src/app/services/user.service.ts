@@ -3,8 +3,6 @@ import {environment} from "../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {User, CreateUser} from "../objects/user";
 import {Observable} from "rxjs";
-import {color} from "@dicebear/avatars";
-import {Image} from "../objects/image";
 
 @Injectable({
   providedIn: 'root'
