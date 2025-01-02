@@ -25,7 +25,7 @@ public class NotificationController {
     @GetMapping(path="/userId")
     public List<Notification> getListImages(@RequestParam("userId") Long userId) {
        // notificationService.deleteOldNotifications(userId);
-        return notificationService.getLatest17Notifications(userId);
+        return notificationService.getLatest7Notifications(userId);
     }
 
 
@@ -33,6 +33,7 @@ public class NotificationController {
     public Notification registerNewNotification(@RequestBody Notification notification) {
         return notificationService.save(notification);
     }
+
 }
 
 

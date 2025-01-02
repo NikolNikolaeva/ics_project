@@ -2,7 +2,7 @@
   <div class="profile-card">
     <cds-icon shape="user" badge="info"></cds-icon>
     <div class="profile-header">
-      <img [src]="currentUser?.picture" alt="No Profile Picture" class="profile-picture" />
+      <img [src]="currentUser?.picture ? currentUser?.picture : '../../assets/default.jpg'" alt="No Profile Picture" class="profile-picture" />
       <h2>{{ currentUser?.username }}</h2>
     </div>
 
@@ -39,13 +39,11 @@
         </li>
       </ul>
     </div>
-
     <!-- Template for no notifications -->
     <ng-template #noNotifications>
       <p>No notifications at the moment.</p>
     </ng-template>
   </div>
-
 
   <!-- Additional Features -->
   <div class="additional-features">
@@ -57,6 +55,7 @@
         <input
           type="file"
           formControlName="files"
+          accept=".png,.jpg"
           required
           clrFileInput
           (change)="onFileSelected($event)" />

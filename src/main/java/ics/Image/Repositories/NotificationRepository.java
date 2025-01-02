@@ -1,6 +1,5 @@
 package ics.Image.Repositories;
 
-import ics.Image.Classes.Image;
 import ics.Image.Classes.Notification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -13,12 +12,14 @@ import java.util.List;
 public interface NotificationRepository extends JpaRepository<Notification, Long> {
 
 
-    @Query("SELECT n FROM Notification n WHERE n.whoseNotification = :userId ORDER BY n.date DESC LIMIT 7")
-    List<Notification> findTop7ByWhoseNotificationOrderByDateDesc(Long userId);
+    // Fetch the IDs of the top 7 latest notifications
+    @Query("SELECT n FROM Notification n WHERE n.whoseNotification = :userId ORDER BY n.date DESC limit 7")
+    List<Notification> findTop7IdsByWhoseNotificationOrderByDateDesc(Long userId);
 
     @Modifying
-    @Query("DELETE FROM Notification n WHERE n.whoseNotification = :userId AND n.id NOT IN " +
-            "(SELECT n.id FROM Notification n WHERE n.whoseNotification = :userId ORDER BY n.date DESC LIMIT 10)")
-    void deleteOldNotifications(Long userId);
-
+    @Query(value = "DELETE FROM notification " +
+            "WHERE whose_notification = :userId " +
+            "AND id NOT IN (SELECT id FROM notification WHERE whose_notification = :userId ORDER BY date DESC LIMIT 7)",
+            nativeQuery = true)
+    void deleteByWhoseNotificationAndIdNotIn(Long userId);
 }
