@@ -18,6 +18,8 @@ public class User {
     private String password;
     @Column(name="email")
     private String email;
+    @Column(name="picture",length = 1000240)
+    private String picture;
 
     @OneToMany
     @JoinTable(
@@ -73,6 +75,13 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 
     @Override

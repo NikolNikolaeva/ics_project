@@ -1,5 +1,6 @@
 package ics.Image.Controllers;
 
+import ics.Image.Classes.Image;
 import ics.Image.Classes.User;
 import ics.Image.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,4 +44,8 @@ public class UserController {
         return userService.addNewUser(user);
     }
 
+    @PutMapping(path = "/update")
+    public User updateImage(@RequestBody User user){
+        return userService.updateUser(user);
+    }
 }

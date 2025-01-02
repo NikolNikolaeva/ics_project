@@ -44,7 +44,6 @@ export class LoginComponent {
     // @ts-ignore
     this.userService.getUserByUsername(username.value).subscribe({
       next: (user: User) => {
-        console.log(user);
         // Assuming the 'user' object has a 'password' property to compare with
         // @ts-ignore
         if (user==null||password.value !== user.password) {

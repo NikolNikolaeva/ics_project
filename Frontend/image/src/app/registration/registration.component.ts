@@ -47,13 +47,13 @@ export class RegistrationComponent {
           informDiv.innerHTML = `<p>User already exists</p>`;
         }
         else{
-          const newUser:User = {
+          const newUser:CreateUser = {
             // @ts-ignore
             username: username.value,
             // @ts-ignore
             email: email.value,
             // @ts-ignore
-            password: password.value
+            password: password.value,
           };
           this.userService.addUser(newUser).subscribe({
             next: (response) => {

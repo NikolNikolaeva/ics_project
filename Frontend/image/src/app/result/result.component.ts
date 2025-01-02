@@ -7,6 +7,7 @@ import '@cds/core/icon/register.js';
 import { ClarityIcons, thumbsUpIcon, thumbsDownIcon, talkBubblesIcon, downloadIcon, trashIcon } from '@cds/core/icon';
 import {User} from "../objects/user";
 import {switchMap} from "rxjs";
+import {NotificationService} from "../services/notification.service";
 
 ClarityIcons.addIcons(thumbsUpIcon, thumbsDownIcon, talkBubblesIcon, downloadIcon, trashIcon);
 
@@ -28,7 +29,8 @@ export class ResultComponent implements OnInit {
     private imageService: ImageService,
     private userService: UserService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private notificationService: NotificationService,
   ) {}
 
   ngOnInit(): void {
@@ -75,6 +77,13 @@ export class ResultComponent implements OnInit {
               (updatedImage: Image) => this.imageToAnalyse = updatedImage,
               (error) => console.error('Error updating image:', error)
             );
+            this.notificationService.addNotification({
+              whoseNotification:this.imageToAnalyse?.user?.id,
+              whoseAction: this.currentUser,
+              date: new Date(),
+              action: "like your image.",
+              imgId: this.imageToAnalyse?.id
+            }).subscribe()
           }
         },
         (error) => {
@@ -108,6 +117,13 @@ export class ResultComponent implements OnInit {
               console.error('Error updating image:', updateError);
             }
           );
+          this.notificationService.addNotification({
+            whoseNotification: this.imageToAnalyse?.user?.id,
+            whoseAction: this.currentUser,
+            date: new Date(),
+            action: "don't like your image.",
+            imgId: this.imageToAnalyse?.id
+          }).subscribe()
         } else {
           console.log('User has already rated this image.');
         }
@@ -161,6 +177,14 @@ export class ResultComponent implements OnInit {
         console.error('Error saving comment:', error);
       }
     );
+
+    this.notificationService.addNotification({
+      whoseNotification: this.imageToAnalyse?.user?.id,
+      whoseAction: this.currentUser,
+      date: new Date(),
+      action: `comment '${this.newComment.trim()}' on your image.`,
+      imgId: this.imageToAnalyse?.id
+    }).subscribe()
   }
 
   dismissCommentPopup(): void {
