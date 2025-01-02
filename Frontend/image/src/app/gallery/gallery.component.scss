@@ -6,62 +6,11 @@
 
 #gallery {
   display: grid;
-  grid-template-columns: auto auto auto auto;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-}
-
-.image{
-  margin: 0.5rem;
-  width: 17rem;
-}
-
-.header-5 clr-combobox-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#select-tags{
-  display: flex;
-  justify-content: center;
-  align-items: end;
-  padding: 1rem;
-  width: 100%;
-}
-
-#select-tags>label{
-  padding-bottom: 0.6rem;
-}
-
-#buttons{
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  margin: 0.3rem;
-  padding-bottom: 0.3rem;
-}
-#buttons > button{
-  margin: 0.1rem;
-}
-
-clr-combobox-container{
-  margin-left: 0.5rem;
-}
-
-.clr-row{
-  display: flex;
-  box-sizing: border-box;
-}
-
-#gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+  grid-template-columns: repeat(5, 1fr);
   gap: 1rem;
   padding: 1rem;
+  width: 100%;
   justify-content: center;
-  align-items: start;
 }
 
 .image {
@@ -70,8 +19,9 @@ clr-combobox-container{
   align-items: center;
   background-color: #ffffff;
   width: 100%;
-  aspect-ratio: 4 / 3;
+  height: 100%;
   overflow: hidden;
+  aspect-ratio: 1;
   border-radius: 0.5rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease-in-out;
@@ -85,4 +35,32 @@ clr-combobox-container{
 
 .image:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#select-tags {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  width: 100%;
+}
+
+#select-tags > label {
+  padding-bottom: 0.6rem;
+}
+
+#buttons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0.3rem;
+  padding-bottom: 0.3rem;
+}
+
+#buttons > button {
+  margin: 0.1rem;
+}
+
+clr-combobox-container {
+  margin-left: 0.5rem;
 }

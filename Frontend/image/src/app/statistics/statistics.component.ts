@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ImageService } from "../services/image.service";
 import { UserService } from "../services/user.service";
+
 import {
   Chart,
   BarController,
@@ -84,10 +85,12 @@ export class StatisticsComponent implements OnInit {
   }
 
   getAllImages(): void {
-    this.imageService.getImages().subscribe((images: any[]) => {
-      this.totalImages = images.length;
+    this.imageService.getImages().subscribe((images: Image[]) => {
+      const publicImages = images.filter(image => !image.privateImg);
+      this.totalImages = publicImages.length;
     });
   }
+
   renderChart(type: string): void {
     this.selectedChartType = type;
     const canvas = document.getElementById('dynamicChart') as HTMLCanvasElement;
@@ -135,7 +138,7 @@ export class StatisticsComponent implements OnInit {
   private renderBarChart(canvas: HTMLCanvasElement): void {
     this.imageService.getTopLikedImages().subscribe((images: Image[]) => {
       const data = images.map(image => image.likes);
-      const labels = images.map(image => image.user.username || 'Untitled');
+      const labels = images.map(image => image.user?.username || 'Untitled');
       this.createChart(canvas, 'bar', labels, data, 'Top Liked Images', true);
     });
   }

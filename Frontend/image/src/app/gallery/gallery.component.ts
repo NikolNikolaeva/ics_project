@@ -53,7 +53,7 @@ export class GalleryComponent implements OnInit {
     this.imageService.getImagesByTag(this.tagsNames).subscribe(
       (imagesByTags) => {
         this.images = imagesByTags.filter((i) => {
-          return !i.privateImg || i.user.id?.toString() === localStorage.getItem("userToken")
+          return !i.privateImg || i.user?.id?.toString() === localStorage.getItem("userToken")
         })
       }
     );
