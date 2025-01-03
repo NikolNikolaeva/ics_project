@@ -127,6 +127,9 @@
   border-bottom: 1px solid #ddd;
   font-size: 0.9rem;
   font-family: 'Arial', sans-serif;
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
 }
 
 .table th {
@@ -154,4 +157,13 @@ clr-modal .modal-body {
 clr-modal .modal-footer {
   display: flex;
   justify-content: right;
+}
+
+.profile-picture {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+  object-fit: cover;
+  border: 1px solid #00567A;
 }

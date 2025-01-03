@@ -24,6 +24,7 @@ export class ResultComponent implements OnInit {
   isDeletePopupVisible: boolean = false;
   imageUrlToDelete: string | undefined;
   currentUser: string = '';
+  userPictures: Map<string,string>=new Map<string, string>()
 
   constructor(
     private imageService: ImageService,
@@ -52,6 +53,7 @@ export class ResultComponent implements OnInit {
     this.imageService.getImageById(id).subscribe(
       (image) => {
         this.imageToAnalyse = image;
+        this.preloadUserPictures();
       },
       (error) => {
         console.error('Error fetching image:', error);
@@ -61,6 +63,21 @@ export class ResultComponent implements OnInit {
 
   navigateToResultView(tag: string): void {
     this.router.navigateByUrl(`/images/${tag}`);
+  }
+
+  preloadUserPictures(): void {
+    if (this.imageToAnalyse?.comments) {
+      const uniqueAuthors = new Set(this.imageToAnalyse.comments.map(comment => comment.author));
+
+      uniqueAuthors.forEach(author => {
+          this.userService.getUserByUsername(author).subscribe(
+            (user: User) => {
+              console.log(user)
+              this.userPictures.set(author, user.picture || '../../assets/default.jpg');
+            }
+          );
+      });
+    }
   }
 
   likeImageWithId(id: number | undefined): void {

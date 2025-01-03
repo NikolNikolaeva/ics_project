@@ -53,7 +53,11 @@
   </thead>
   <tbody>
   <tr *ngFor="let comment of imageToAnalyse.comments">
-    <td class="left">{{ comment.author }}</td>
+    <td class="left"><img
+      [src]="userPictures.get(comment.author) || '../../assets/default.jpg'"
+      alt="No Profile Picture"
+      class="profile-picture"
+    />{{ comment.author }}</td>
     <td>{{ comment.date | date: 'h:mm:ss a d/MM/yyyy' }}</td>
     <td class="left">{{ comment.commentText }}</td>
   </tr>
