@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-img">
-    <img src="{{ imageToAnalyse?.url }}" alt="Image" id="image" />
+    <img *ngIf="imageToAnalyse?.url" [src]="imageToAnalyse?.url" alt="Image" id="image" />
   </div>
   <div class="card-block">
     <div class="user-info">
@@ -41,6 +41,15 @@
           *ngIf="currentUser === imageToAnalyse?.user?.username">
     <cds-icon shape="trash"></cds-icon>
   </button>
+
+  <button
+    type="button"
+    class="btn btn-icon"
+    aria-label="Toggle Privacy"
+    *ngIf="currentUser === imageToAnalyse?.user?.username"
+    (click)="openLockUnlockPopup()">
+    <cds-icon [attr.shape]="imageToAnalyse?.privateImg ? 'lock' : 'unlock'"></cds-icon>
+  </button>
 </div>
 
 <table class="table" *ngIf="imageToAnalyse && imageToAnalyse.comments && imageToAnalyse.comments.length > 0">
@@ -53,11 +62,13 @@
   </thead>
   <tbody>
   <tr *ngFor="let comment of imageToAnalyse.comments">
-    <td class="left"><img
-      [src]="userPictures.get(comment.author) || '../../assets/default.jpg'"
-      alt="No Profile Picture"
-      class="profile-picture"
-    />{{ comment.author }}</td>
+    <td class="left">
+      <img
+        [src]="userPictures.get(comment.author) || '../../assets/default.jpg'"
+        alt="No Profile Picture"
+        class="profile-picture"
+      />{{ comment.author }}
+    </td>
     <td>{{ comment.date | date: 'h:mm:ss a d/MM/yyyy' }}</td>
     <td class="left">{{ comment.commentText }}</td>
   </tr>
@@ -81,7 +92,7 @@
     </form>
   </div>
   <div class="modal-footer">
-    <button type="submit" class="btn btn-success" (click)="saveComment(imageToAnalyse?.id)">Save</button>
+    <button type="button" class="btn btn-success" (click)="saveComment(imageToAnalyse?.id)">Save</button>
     <button type="button" class="btn btn-outline" (click)="dismissCommentPopup()">Dismiss</button>
   </div>
 </clr-modal>
@@ -94,5 +105,18 @@
   <div class="modal-footer">
     <button type="button" class="btn btn-danger" (click)="deleteImage(imageToAnalyse?.id)">Delete</button>
     <button type="button" class="btn btn-outline" (click)="dismissDeletePopup()">Cancel</button>
+  </div>
+</clr-modal>
+
+<clr-modal [(clrModalOpen)]="isLockUnlockPopupVisible">
+  <h3 class="modal-title">Confirm Privacy Change</h3>
+  <div class="modal-body">
+    <p>
+      Are you sure you want to {{ imageToAnalyse?.privateImg ? 'make the image public' : 'make the image private' }}?
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-success" (click)="confirmPrivacyChange()">Confirm</button>
+    <button type="button" class="btn btn-outline" (click)="dismissLockUnlockPopup()">Cancel</button>
   </div>
 </clr-modal>
