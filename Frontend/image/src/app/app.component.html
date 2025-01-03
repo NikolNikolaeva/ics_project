@@ -12,6 +12,15 @@
       <a routerLink="/profile" id="profile" class="nav-link" (click)="changeActiveProfile()"><span class="nav-text">Profile</span></a>
     </ng-container>
   </div>
+
+  <div *ngIf="authService.isLoggedIn()" class="header-actions">
+      <span class="nav-text username">{{ user?.username || 'Guest' }}</span>
+      <img
+        [src]="user?.picture ? user?.picture : '../../assets/default.jpg'"
+        alt="No Profile Picture"
+        class="profile-picture"
+      />
+  </div>
 </header>
 
 <router-outlet></router-outlet>
