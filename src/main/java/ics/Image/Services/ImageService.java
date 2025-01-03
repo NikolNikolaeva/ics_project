@@ -98,6 +98,9 @@ public class ImageService {
         if(image.getDislikes() != updateImg.getDislikes()) {
             updateImg.setDislikes(image.getDislikes());
         }
+        if(image.isPrivateImg() != updateImg.isPrivateImg()) {
+            updateImg.setPrivateImg(image.isPrivateImg());
+        }
 
         if ((image.getUsersRated() != null && !image.getUsersRated().isEmpty()) &&
                 (updateImg.getUsersRated() != null && !updateImg.getUsersRated().isEmpty())) {
