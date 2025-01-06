@@ -50,12 +50,11 @@ export class LoginComponent {
           // @ts-ignore
           informDiv.innerHTML = `<p>Invalid username or password</p>`;
         } else {
-          // Perform login and navigate
-          this.router.navigateByUrl(`/analyse`)
-            .then(r => {
-              // @ts-ignore
-              this.authService.login(user.id)
-            })
+          if(user.id) {
+            this.authService.login(user?.id)
+            // Perform login and navigate
+            this.router.navigateByUrl(`/analyse`);
+          }
         }
       }
     })
