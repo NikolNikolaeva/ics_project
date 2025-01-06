@@ -182,6 +182,10 @@ export class ResultComponent implements OnInit {
           date: currentTime,
         });
 
+        image.comments = image.comments.sort(
+          (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+        );
+
         return this.imageService.updateImage(image);
       })
     ).subscribe(
